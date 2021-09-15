@@ -1,5 +1,5 @@
 ---
-- name: Check for Yum Updates
+ - name: Check for Yum Updates
   become: true
   become_flags: "-i"
   become_user: root
