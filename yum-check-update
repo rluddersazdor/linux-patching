@@ -1,9 +1,13 @@
----
-- name: Yum Check for Updates
+--- 
+- 
+  args: 
+    warn: false
+  become: true
+  become_flags: "-i"
+  become_user: root
   hosts: all
-  become: yes
-  
-  tasks:
-  
-  - name Check Update
-  shell: yum check-update
+  name: "Check for Yum Updates"
+  tasks: 
+    - 
+      name: "Yum Check Update"
+      shell: "yum check-update"
