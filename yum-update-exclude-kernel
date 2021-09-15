@@ -1,1 +1,11 @@
-
+---
+- name: Yum updates Excluding Kernel
+  become: true
+  become_user: root
+  hosts: all
+  tasks:
+    - name: Upgrade all packages, excluding kernel packages
+    yum:
+    name: '*'
+    state: latest
+    exclude: kernel*
