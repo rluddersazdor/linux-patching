@@ -6,6 +6,5 @@
   hosts: all
   
   tasks: 
-    - 
-      name: Yum Check Update
-      shell: yum check-update
+- name: Yum Check Update
+  shell: yum check-update
