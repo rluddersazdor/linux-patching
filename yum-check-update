@@ -4,4 +4,4 @@
   become_user: root
   tasks:
     - name: Yum Check Update
-    shell: yum check-update
+      shell: yum check-update
