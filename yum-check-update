@@ -1,6 +1,11 @@
 ---
 - name: Check for Yum Updates
   become: yes
+  become_user: root
+  become: yes
+  become_flags: '-i'
+  warn: false
+  
   hosts: all
  
   tasks:
