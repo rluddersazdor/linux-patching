@@ -2,6 +2,7 @@
 - name: Check for Yum Updates
   become: true
   become_user: root
+  hosts: all
   tasks:
     - name: Yum Check Update
       shell: yum check-update
