@@ -1,1 +1,8 @@
-
+---
+- name: Pre Check to check Communication and Access
+  hosts: all
+ 
+  tasks:
+ 
+  - name: Pre Check
+    shell: echo "Hi! Tower is working."
