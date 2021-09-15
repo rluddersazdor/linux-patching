@@ -1,5 +1,5 @@
 --- 
-- name: "Check for Yum Updates"
+- name: Check for Yum Updates
   become: true
   become_flags: "-i"
   become_user: root
@@ -7,5 +7,5 @@
   
   tasks: 
     - 
-      name: "Yum Check Update"
-      shell: "yum check-update"
+      name: Yum Check Update
+      shell: yum check-update
