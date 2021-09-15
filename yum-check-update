@@ -1,0 +1,9 @@
+---
+- name: Check for Yum Updates
+  become: yes
+  hosts: all
+ 
+  tasks:
+ 
+  - name: Yum Check Update
+    shell: yum check-update
