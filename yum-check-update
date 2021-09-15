@@ -1,10 +1,10 @@
 --- 
-- 
+- name: "Check for Yum Updates"
   become: true
   become_flags: "-i"
   become_user: root
   hosts: all
-  name: "Check for Yum Updates"
+  
   tasks: 
     - 
       name: "Yum Check Update"
