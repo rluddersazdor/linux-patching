@@ -5,7 +5,7 @@
   hosts: all
   tasks:
     - name: Upgrade all packages, excluding kernel packages
-    yum:
-    name: '*'
-    state: latest
-    exclude: kernel*
+      yum:
+      name: '*'
+      state: latest
+      exclude: kernel*
