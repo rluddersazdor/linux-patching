@@ -1,5 +1,6 @@
 ---
 - name: Yum updates Excluding Kernel
+  gather_facts=false
   become: true
   become_user: root
   hosts: all
