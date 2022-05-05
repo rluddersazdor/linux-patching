@@ -1,12 +1,12 @@
 ---
-- name: Yum updates Excluding Kernel
+- name: Check Oracle DB Status
   gather_facts: false
   become: true
   become_user: oracle
   hosts: dldboran1
   tasks:
     - name: Check current status
-      shell: "ps -ef | grep oracle"              
+      shell: "whoami"              
       register: dbstatus
     - debug:
        var: dbstatus.stdout_lines 
