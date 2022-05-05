@@ -1,1 +1,12 @@
-
+---
+- name: Dev Yum updates 
+  gather_facts: false
+  become: true
+  become_user: root
+  hosts: all
+  tasks:
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+        
