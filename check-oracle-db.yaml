@@ -5,8 +5,8 @@
   become_user: oracle
   hosts: dldboran1
   tasks:
-    - name: Upgrade all packages, excluding kernel packages
-      yum:
-        name: '*'
-        state: latest
-        exclude: kernel*
+    - name: Check current status
+      shell: "ps -ef | grep oracle"              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines 
