@@ -1,6 +1,6 @@
 ---
 - name: Pre Check to check Communication and Access
-  hosts: dlaporalb1
+  hosts: all
  
   tasks:
  
