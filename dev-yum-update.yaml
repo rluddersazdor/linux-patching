@@ -4,9 +4,8 @@
   become: true
   become_user: root
   
-  hosts: 
-  dldsadmin1
-  dldsadmin2   
+  hosts: dldsadmin1
+         dldsadmin2   
   
   tasks:
     - name: Upgrade all packages
