@@ -5,4 +5,8 @@
   tasks:
  
   - name: Pre Check
-    shell: echo "Hi! Tower is working."
+    #shell: echo "Hi! Tower is working."
+    shell: "yum check-update"
+    register: yumstatus
+    - debug:
+       var: yumstatus.stdout_lines
