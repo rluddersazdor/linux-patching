@@ -30,7 +30,7 @@
     - name: Upgrade all packages
       yum:
         name: '*'
-        register: yum_std_out
         state: latest
+        register: yum_std_out
     - debug:
         msg: yum_std_out.stdout_lines
