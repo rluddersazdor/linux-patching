@@ -1,6 +1,6 @@
 ---
 - name: Dev Yum updates 
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
     
@@ -30,7 +30,4 @@
     - name: Upgrade all packages
       yum:
         name: '*'
-        state: latest
-        register: yum_std_out
-    - debug:
-        msg: yum_std_out.stdout_lines
+        state: latest      
