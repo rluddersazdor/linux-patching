@@ -3,7 +3,7 @@
   gather_facts: false
   become: true
   become_user: root
-  
+    
   hosts: #pdl6sftp01
          dldsadmin1
          dldsadmin2
@@ -33,4 +33,4 @@
         register: yum_std_out
         state: latest
     - debug:
-        var: yum_std_out
+        msg: yum_std_out.stdout_lines
