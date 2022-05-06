@@ -8,5 +8,4 @@
  
   tasks:
   - name: Reboot Dev
-    hosts: dldsadmin1
     reboot: 
