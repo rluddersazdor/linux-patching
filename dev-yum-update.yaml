@@ -32,6 +32,5 @@
         name: '*'
         register: yum_std_out
         state: latest
-        
     - debug:
-      msg: "{{ yum_std_out.split('\n') }}"
+        msg: "{{ yum_std_out.split('\n') }}"
