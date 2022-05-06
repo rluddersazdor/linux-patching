@@ -33,4 +33,4 @@
         register: yum_std_out
         state: latest
     - debug:
-        msg: "{{ yum_std_out.split('\n') }}"
+        var: yum_std_out
