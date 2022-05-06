@@ -1,0 +1,8 @@
+---
+- name: Reboot of Dev Servers
+  gather_facts: false
+  hosts: dldsadmin1
+ 
+  tasks:
+  - name: Reboot Dev
+    reboot:
