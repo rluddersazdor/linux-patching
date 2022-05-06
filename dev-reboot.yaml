@@ -1,9 +1,10 @@
 ---
 - name: Reboot of Dev Servers
-  gather_facts: false
+  gather_facts: true
   become: true
   become_user: root
   hosts: dldsadmin1
+         dldsadmin2
  
   tasks:
   - name: Reboot Dev
