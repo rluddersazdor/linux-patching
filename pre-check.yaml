@@ -8,4 +8,4 @@
     shell: "yum check-update"
     register: yumstatus
   - debug:
-    var: yumstatus.stdout_lines
+      var: yumstatus.stdout_lines
