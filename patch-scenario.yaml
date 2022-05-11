@@ -1,21 +1,33 @@
 ---
-- name: Hello World!
-  hosts: dldsproto1 
+- name: Yum Apply Updates 
+  gather_facts: false
+  become: true
+  become_user: root
+    
+  hosts: #pdl6sftp01
+         #dldsadmin1
+         #dldsadmin2
+         #dldsansible2
+         #dldsdev1
+         #dldsdev2
+         dldsproto1
+         dldsproto2
+         dldsproto3
+         #dlapwls1
+         #dldboran1
+         #dldboran2
+         #dlaptascob1    
+         #dlaptascob2
+         #tlapwls1
+         #tldboran1
+         #tldboran2
+         #dlaporalb1
+         #tlaporalb1
+         #dlaporalb2
+         #tlaporalb2
+        
   tasks:
- 
-  - name: Hello World!
-    shell: echo "Hi! Ansible is working."
-
-- name: Hello Again!
-  hosts: dldsproto2
-  tasks:
-
-  - name: Hello World!
-    shell: echo "Hi! Hello Again."
-
-- name: Hello Friend
-  hosts: dldsproto3
-  tasks:
-  
-  - name: Hello Friend
-    shell: echo "Hello Friend" 
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest      
