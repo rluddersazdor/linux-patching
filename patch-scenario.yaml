@@ -3,12 +3,10 @@
 - name: Yum Apply Updates 
   gather_facts: false
   become: true
-  become_user: root
-    
+  become_user: root    
   hosts: dldsproto1
          dldsproto2
-         dldsproto3
-                 
+         dldsproto3                 
   tasks:
     - name: Upgrade all packages
       yum:
@@ -20,8 +18,7 @@
 #  gather_facts: true
 #  become: true
 #  become_user: root
-#  hosts: dldsproto3
-#          
+#  hosts: dldsproto3#          
 #  tasks:
 #  - name: Reboot Dev
 #    reboot: 
@@ -30,12 +27,24 @@
 - name: Swich Secondary LB to Primary
   gather_facts: false
   become: yes
-  hosts: dldsproto2
-         
+  hosts: dldsproto2  
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
       register: lbswitch
     - debug:  
         var: lbswitch.stdout_lines
+        
+# Stop Secondary Oracle Database        
+- name: Stop Secondary Oracle DB
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: dldsproto2
+  tasks:
+    - name: Stopping DB
+      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines 
  
