@@ -1,4 +1,5 @@
 ---
+# Playbook to apply the latest RHEL updates
 - name: Yum Apply Updates 
   gather_facts: false
   become: true
@@ -31,3 +32,16 @@
       yum:
         name: '*'
         state: latest      
+
+# Reboot
+- name: Reboot of Dev Servers
+  gather_facts: true
+  become: true
+  become_user: root
+  hosts: dldsproto1
+         dldsproto2
+         dldsproto3
+ 
+  tasks:
+  - name: Reboot Dev
+    reboot: 
