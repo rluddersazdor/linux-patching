@@ -4,7 +4,6 @@
   tasks:
  
   - name: Hello World!
-    #hosts: dldsproto1
     shell: echo "Hi! Ansible is working."
 
 - name: Hello Again!
