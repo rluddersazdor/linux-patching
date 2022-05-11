@@ -66,7 +66,7 @@
   - name: Pause for 1 minutes
     pause:
       minutes: 1
- - name: Ping to verify connectivity
+  - name: Ping to verify connectivity
     ansible.builtin.ping:
   
  # Next Step 
