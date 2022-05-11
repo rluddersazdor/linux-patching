@@ -16,12 +16,26 @@
         state: latest      
 
 # Reboot
-- name: Reboot Non DB Servers
-  gather_facts: true
-  become: true
-  become_user: root
-  hosts: dldsproto1
-          
+#- name: Reboot Non DB Servers
+#  gather_facts: true
+#  become: true
+#  become_user: root
+#  hosts: dldsproto3
+#          
+#  tasks:
+#  - name: Reboot Dev
+#    reboot: 
+
+# Switch Seconday DB Traffic to Primary
+- name: Swich Secondary LB to Primary
+  gather_facts: false
+  become: yes
+  hosts: dldsproto2
+         
   tasks:
-  - name: Reboot Dev
-    reboot: 
+    - name: Switch Load Balancer
+      shell: /usr/local/bin/lbswitch
+      register: lbswitch
+    - debug:  
+        var: lbswitch.stdout_lines
+ 
