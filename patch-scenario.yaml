@@ -18,7 +18,7 @@
 #  gather_facts: true
 #  become: true
 #  become_user: root
-#  hosts: dldsproto3#          
+#  hosts: dldsproto3          
 #  tasks:
 #  - name: Reboot Dev
 #    reboot: 
@@ -48,3 +48,12 @@
     - debug:
        var: dbstatus.stdout_lines 
  
+# Reboot Secondary Oracle Database
+- name: Reboot Secondary Oracle Database
+  gather_facts: true
+  become: true
+  become_user: root
+  hosts: dldsproto2          
+  tasks:
+  - name: Reboot Secondary Oracle Database
+    reboot: 
