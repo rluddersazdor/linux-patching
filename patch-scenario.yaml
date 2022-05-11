@@ -16,14 +16,12 @@
         state: latest      
 
 # Reboot
-- name: Reboot of Dev Servers
+- name: Reboot Non DB Servers
   gather_facts: true
   become: true
   become_user: root
   hosts: dldsproto1
-         dldsproto2
-         dldsproto3
- 
+          
   tasks:
   - name: Reboot Dev
     reboot: 
