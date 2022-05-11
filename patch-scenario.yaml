@@ -69,4 +69,30 @@
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
+  # Start Secondary Oracle Database        
+- name: Stop Secondary Oracle DB
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: dldsproto2
+  tasks:
+    - name: Stopping DB
+      shell: /home/oracle/scripts/dbs_startup.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout# 
+      
+#Switch Seconday DB Traffic to Secondary
+- name: Swich Secondary LB to Secondary
+  gather_facts: false
+  become: yes
+  hosts: dldsproto2  
+  tasks:
+    - name: Switch Load Balancer
+      shell: /usr/local/bin/lbswitch
+      register: lbswitch
+    - debug:  
+        var: lbswitch.stdout_lines
+  
+  
  # Next Step 
