@@ -57,3 +57,16 @@
   tasks:
   - name: Reboot Secondary Oracle Database
     reboot: 
+    
+# Pause to let InfoSec tools load    
+- name: Pasue After Reboot
+  gather_facts: false
+  hosts: dldsproto2
+  tasks:
+  - name: Pause for 1 minutes
+    pause:
+      minutes: 1
+ - name: Ping to verify connectivity
+    ansible.builtin.ping:
+  
+ # Next Step 
