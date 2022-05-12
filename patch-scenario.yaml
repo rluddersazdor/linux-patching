@@ -80,7 +80,7 @@
       shell: /home/oracle/scripts/dbs_startup.ksh              
       register: dbstatus
     - debug:
-       var: dbstatus.stdout# 
+       var: dbstatus.stdout
       
 # Switch Seconday DB Traffic to Secondary
 - name: Swich Secondary LB to Secondary
