@@ -156,7 +156,7 @@
     - debug:
        var: dbstatus.stdout# 
       
-#Switch Primary DB Traffic to Primary
+# Switch Primary DB Traffic to Primary
 - name: Swich Primary LB to Primary
   gather_facts: false
   become: yes
@@ -168,4 +168,4 @@
     - debug:  
         var: lbswitch.stdout_lines
 
-# All Complete
+# All Complete EOF
