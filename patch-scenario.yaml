@@ -154,7 +154,7 @@
       shell: /home/oracle/scripts/dbs_startup.ksh              
       register: dbstatus
     - debug:
-       var: dbstatus.stdout# 
+       var: dbstatus.stdout 
       
 # Switch Primary DB Traffic to Primary
 - name: Swich Primary LB to Primary
