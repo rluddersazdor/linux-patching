@@ -69,7 +69,7 @@
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
-  # Start Secondary Oracle Database        
+# Start Secondary Oracle Database        
 - name: Start Secondary Oracle DB
   gather_facts: false
   become: true
@@ -82,7 +82,7 @@
     - debug:
        var: dbstatus.stdout# 
       
-#Switch Seconday DB Traffic to Secondary
+# Switch Seconday DB Traffic to Secondary
 - name: Swich Secondary LB to Secondary
   gather_facts: false
   become: yes
@@ -97,7 +97,7 @@
 # Secondary DB complete
 # Starting Primary
  
- # Switch Primary DB Traffic to Secondary
+# Switch Primary DB Traffic to Secondary
 - name: Swich Primary LB to Secondary
   gather_facts: false
   become: yes
@@ -143,7 +143,7 @@
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
-  # Start Secondary Oracle Database        
+# Start Secondary Oracle Database        
 - name: Start Primary Oracle DB
   gather_facts: false
   become: true
