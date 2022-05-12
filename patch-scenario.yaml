@@ -95,7 +95,7 @@
         var: lbswitch.stdout_lines
   
 # Secondary DB complete
-# Starting Primary
+# Starting Primary DB
  
 # Switch Primary DB Traffic to Secondary
 - name: Swich Primary LB to Secondary
