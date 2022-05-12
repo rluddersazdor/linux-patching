@@ -123,13 +123,13 @@
        var: dbstatus.stdout_lines 
  
 # Reboot Primary Oracle Database
-- name: Reboot Secondary Oracle Database
+- name: Reboot Primary Oracle Database
   gather_facts: true
   become: true
   become_user: root
   hosts: dldsproto1          
   tasks:
-  - name: Reboot Secondary Oracle Database
+  - name: Reboot Primary Oracle Database
     reboot: 
     
 # Pause to let InfoSec tools load    
