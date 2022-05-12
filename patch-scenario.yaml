@@ -1,5 +1,5 @@
 ---
-# Playbook to apply the latest RHEL updates
+# Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots
 - name: Yum Apply Updates 
   gather_facts: false
   become: true
