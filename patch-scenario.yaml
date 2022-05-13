@@ -1,5 +1,15 @@
 ---
 # Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots
+
+# Waring Pause in case of FUBAR   
+- name: WARNING this playbook will update and reboot all XXXX Servers. Cancel immediately if ran in error!
+  gather_facts: false
+  hosts: dldsproto2
+  tasks:
+  - name: Pause for 1 minutes
+    pause:
+      minutes: 1
+
 - name: Yum Apply Updates 
   gather_facts: false
   become: true
@@ -20,7 +30,7 @@
   become_user: root
   hosts: dldsproto3          
   tasks:
-  - name: Reboot Dev
+  - name: Reboot Non DB Servers
     reboot: 
 
 # Switch Seconday DB Traffic to Primary
