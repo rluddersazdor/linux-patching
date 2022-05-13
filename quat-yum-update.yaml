@@ -2,21 +2,27 @@
 # Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots in QUAT
 
 # Waring Pause in case of FUBAR   
-- name: WARNING this playbook will update and reboot all XXXX Servers. Cancel immediately if ran in error!
+- name: WARNING this playbook will update and reboot all QUAT Servers. Cancel immediately if ran in error!
   gather_facts: false
-  hosts: dldsproto2
+  hosts: tql6sftp01
   tasks:
-  - name: Pause for 1 minutes
+  - name: Pause for 2 minutes
     pause:
-      minutes: 1
+      minutes: 2
 
 - name: Yum Apply Updates 
   gather_facts: false
   become: true
   become_user: root    
-  hosts: dldsproto1
-         dldsproto2
-         dldsproto3                 
+  hosts: tql6sftp01
+         qlapwls1
+         qlapwls2
+         qlapwls3
+         qldboran1
+         qldboran2
+         qlaptascob1    
+         qlaptascob2      
+                         
   tasks:
     - name: Upgrade all packages
       yum:
@@ -28,7 +34,12 @@
   gather_facts: true
   become: true
   become_user: root
-  hosts: dldsproto3          
+  hosts: tql6sftp01
+         qlapwls1
+         qlapwls2
+         qlapwls3
+         qlaptascob1    
+         qlaptascob2          
   tasks:
   - name: Reboot Non DB Servers
     reboot: 
@@ -37,7 +48,7 @@
 - name: Swich Secondary LB to Primary
   gather_facts: false
   become: yes
-  hosts: dldsproto2  
+  hosts: qldboran2  
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
@@ -50,7 +61,7 @@
   gather_facts: false
   become: true
   become_user: oracle
-  hosts: dldsproto2
+  hosts: qldboran2
   tasks:
     - name: Stopping DB
       shell: /home/oracle/scripts/dbs_shutdown.ksh              
@@ -61,7 +72,7 @@
 # Temporary pause to verify DB stop   
 - name: Double Check DB
   gather_facts: false
-  hosts: dldsproto2
+  hosts: qldboran2
   tasks:
   - name: Pause for 1 minutes
     pause:
@@ -72,7 +83,7 @@
   gather_facts: true
   become: true
   become_user: root
-  hosts: dldsproto2          
+  hosts: qldboran2          
   tasks:
   - name: Reboot Secondary Oracle Database
     reboot: 
@@ -80,7 +91,7 @@
 # Pause to let InfoSec tools load    
 - name: Pasue After Reboot
   gather_facts: false
-  hosts: dldsproto2
+  hosts: qldboran2
   tasks:
   - name: Pause for 1 minutes
     pause:
@@ -93,7 +104,7 @@
   gather_facts: false
   become: true
   become_user: oracle
-  hosts: dldsproto2
+  hosts: qldboran2
   tasks:
     - name: Starting DB
       shell: /home/oracle/scripts/dbs_startup.ksh              
@@ -105,7 +116,7 @@
 - name: Swich Secondary LB to Secondary
   gather_facts: false
   become: yes
-  hosts: dldsproto2  
+  hosts: qldboran2  
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
@@ -120,7 +131,7 @@
 - name: Swich Primary LB to Secondary
   gather_facts: false
   become: yes
-  hosts: dldsproto1  
+  hosts: qldboran1  
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
@@ -133,7 +144,7 @@
   gather_facts: false
   become: true
   become_user: oracle
-  hosts: dldsproto1
+  hosts: qldboran1
   tasks:
     - name: Stopping DB
       shell: /home/oracle/scripts/dbs_shutdown.ksh              
@@ -144,7 +155,7 @@
 # Temporary pause to verify DB stop   
 - name: Double Check DB
   gather_facts: false
-  hosts: dldsproto2
+  hosts: qldboran1
   tasks:
   - name: Pause for 1 minutes
     pause:
@@ -155,7 +166,7 @@
   gather_facts: true
   become: true
   become_user: root
-  hosts: dldsproto1          
+  hosts: qldboran1          
   tasks:
   - name: Reboot Primary Oracle Database
     reboot: 
@@ -163,7 +174,7 @@
 # Pause to let InfoSec tools load    
 - name: Pasue After Reboot
   gather_facts: false
-  hosts: dldsproto1
+  hosts: qldboran1
   tasks:
   - name: Pause for 1 minutes
     pause:
@@ -176,7 +187,7 @@
   gather_facts: false
   become: true
   become_user: oracle
-  hosts: dldsproto1
+  hosts: qldboran1
   tasks:
     - name: Starting DB
       shell: /home/oracle/scripts/dbs_startup.ksh              
@@ -188,7 +199,7 @@
 - name: Swich Primary LB to Primary
   gather_facts: false
   become: yes
-  hosts: dldsproto1  
+  hosts: qldboran1  
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
