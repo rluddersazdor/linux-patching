@@ -47,7 +47,16 @@
       register: dbstatus
     - debug:
        var: dbstatus.stdout_lines 
- 
+
+# Temporary pause to verify DB stop   
+- name: Double Check DB
+  gather_facts: false
+  hosts: dldsproto2
+  tasks:
+  - name: Pause for 1 minutes
+    pause:
+      minutes: 1
+   
 # Reboot Secondary Oracle Database
 - name: Reboot Secondary Oracle Database
   gather_facts: true
@@ -121,6 +130,15 @@
       register: dbstatus
     - debug:
        var: dbstatus.stdout_lines 
+
+# Temporary pause to verify DB stop   
+- name: Double Check DB
+  gather_facts: false
+  hosts: dldsproto2
+  tasks:
+  - name: Pause for 1 minutes
+    pause:
+      minutes: 1
  
 # Reboot Primary Oracle Database
 - name: Reboot Primary Oracle Database
