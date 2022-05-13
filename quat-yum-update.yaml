@@ -74,9 +74,9 @@
   gather_facts: false
   hosts: qldboran2
   tasks:
-  - name: Pause for 1 minutes
+  - name: Pause for 5 minutes
     pause:
-      minutes: 1
+      minutes: 5
    
 # Reboot Secondary Oracle Database
 - name: Reboot Secondary Oracle Database
@@ -93,9 +93,9 @@
   gather_facts: false
   hosts: qldboran2
   tasks:
-  - name: Pause for 1 minutes
+  - name: Pause for 5 minutes
     pause:
-      minutes: 1
+      minutes: 5
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
@@ -157,9 +157,9 @@
   gather_facts: false
   hosts: qldboran1
   tasks:
-  - name: Pause for 1 minutes
+  - name: Pause for 5 minutes
     pause:
-      minutes: 1
+      minutes: 5
  
 # Reboot Primary Oracle Database
 - name: Reboot Primary Oracle Database
@@ -176,9 +176,9 @@
   gather_facts: false
   hosts: qldboran1
   tasks:
-  - name: Pause for 1 minutes
+  - name: Pause for 5 minutes
     pause:
-      minutes: 1
+      minutes: 5
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
