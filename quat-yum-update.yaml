@@ -48,7 +48,7 @@
 - name: Swich Secondary LB to Primary
   gather_facts: false
   become: yes
-  hosts: qldboran2  
+  hosts: qlaporalb2  
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
@@ -74,9 +74,9 @@
   gather_facts: false
   hosts: qldboran2
   tasks:
-  - name: Pause for 5 minutes
+  - name: Pause for 2 minutes
     pause:
-      minutes: 5
+      minutes: 2
    
 # Reboot Secondary Oracle Database
 - name: Reboot Secondary Oracle Database
@@ -116,7 +116,7 @@
 - name: Swich Secondary LB to Secondary
   gather_facts: false
   become: yes
-  hosts: qldboran2  
+  hosts: qlaporalb2   
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
@@ -131,7 +131,7 @@
 - name: Swich Primary LB to Secondary
   gather_facts: false
   become: yes
-  hosts: qldboran1  
+  hosts: qlaporalb1  
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
@@ -157,9 +157,9 @@
   gather_facts: false
   hosts: qldboran1
   tasks:
-  - name: Pause for 5 minutes
+  - name: Pause for 2 minutes
     pause:
-      minutes: 5
+      minutes: 2
  
 # Reboot Primary Oracle Database
 - name: Reboot Primary Oracle Database
@@ -199,7 +199,7 @@
 - name: Swich Primary LB to Primary
   gather_facts: false
   become: yes
-  hosts: qldboran1  
+  hosts: qlaporalb1  
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
