@@ -1,5 +1,5 @@
 ---
-# Playbook to apply the latest RHEL updates and reboot in PROD
+# Playbook to apply the latest RHEL updates and reboots in PROD
 
 # Waring Pause in case of FUBAR   
 - name: WARNING this playbook will update and reboot all PROD Servers. Cancel immediately if ran in error!
