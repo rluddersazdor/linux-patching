@@ -1,6 +1,6 @@
 ---
 - name: Prod Yum updates 
-  gather_facts: false
+  gather_facts: true
   become: true
   become_user: root
   hosts: pldsadmin1
