@@ -208,7 +208,7 @@
         var: lbswitch.stdout_lines
         
 # Start the Tasmstr Deamons        
-- name: Stop Secondary Oracle DB
+- name: Start the Tasmstr Deamons
   gather_facts: false
   become: true
   become_user: tasmstr
