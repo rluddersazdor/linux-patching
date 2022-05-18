@@ -1,9 +1,9 @@
 ---
-- name: Dev Yum updates 
+- name: Prod Yum updates 
   gather_facts: false
   become: true
   become_user: root
-  hosts: all
+  hosts: pldsadmin1
   tasks:
     - name: Upgrade all packages
       yum:
