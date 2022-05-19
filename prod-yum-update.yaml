@@ -27,7 +27,7 @@
          plaptrngcob1
          plaptrngwls1
          pldbtrngoran1                                   
-   tasks:
+  tasks:
     - name: Upgrade all packages
       yum:
         name: '*'
@@ -53,7 +53,7 @@
          plissyslogng
          plissyslogng1
          plissyslogng2          
-    tasks:
+  tasks:
     - name: Upgrade all packages
       yum:
         name: '*'
