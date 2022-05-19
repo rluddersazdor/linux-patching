@@ -11,7 +11,7 @@
     pause:
       minutes: 2
  
- - name: Yum Apply Updates TAS
+- name: Yum Apply Updates TAS
   gather_facts: false
   become: true
   become_user: root    
@@ -27,7 +27,7 @@
          plaptrngcob1
          plaptrngwls1
          pldbtrngoran1                                   
-  tasks:
+   tasks:
     - name: Upgrade all packages
       yum:
         name: '*'
