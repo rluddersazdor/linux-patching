@@ -81,8 +81,9 @@
 - name: Start the Tasmstr Deamons
   gather_facts: false
   become: true
-  become_method: machinectl
+  become_method: sudo
   become_user: tasmstr
+  become_flags: 'sudo su - tasmstr'
   hosts: plaptascob1
          plaptascob2 
   tasks:
