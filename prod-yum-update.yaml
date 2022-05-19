@@ -77,14 +77,6 @@
     - debug:
        var: status.stdout_lines 
 
-- name: Temporary pause to verify Splunk stopped successfully for first run 
-  gather_facts: false
-  hosts: plissplnkmst1
-  tasks:
-  - name: Pause for 5 minutes
-    pause:
-      minutes: 5
-
 # Reboot
 - name: Reboot Prod Servers exculding TAS
   gather_facts: true
@@ -130,10 +122,28 @@
          plissyslogng1
          plissyslogng2   
   tasks:
-  - name: Pause for 2 minutes
+  - name: Pause for 1 minutes
     pause:
-      minutes: 2
+      minutes: 1
   - name: Ping to verify connectivity
     ansible.builtin.ping:
+
+# Verify Splunk is running       
+- name: Stauts Splunk
+  gather_facts: false
+  become: true
+  become_user: splunk
+  hosts: plissplnkmst1
+         plissplnkdeploy1
+         plissplnksearch1
+         plissplnkfwd1
+         plissplnkidx1
+         plissplnkidx2        
+  tasks:
+    - name: Stop Splunk
+      shell: "/opt/splunk/bin/splunk status"              
+      register: status
+    - debug:
+       var: status.stdout_lines 
 
 # All complete EOF
