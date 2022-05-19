@@ -1,10 +1,11 @@
 ---
 # Playbook to apply the latest RHEL updates and reboots in PROD
+# TAS Prod servers will be updated but not rebooted
 
 # Waring Pause in case of FUBAR   
-- name: WARNING this playbook will update and reboot all PROD Servers. Cancel immediately if ran in error!
+- name: WARNING this playbook will update and reboot(exculding TAS) all PROD Servers. Cancel immediately if ran in error!
   gather_facts: false
-  hosts: dldsproto2
+  hosts: pldsadmin1
   tasks:
   - name: Pause for 2 minutes
     pause:
@@ -29,59 +30,61 @@
          plissplnkidx2
          plissyslogng
          plissyslogng1
-         plissyslogng2               
-                                  
-  tasks:
+         plissyslogng2          
+    tasks:
     - name: Upgrade all packages
       yum:
         name: '*'
         state: latest      
 
 # Stop Splunk before rebooting        
-#- name: Stop Splunk
-#  gather_facts: false
-#  become: true
-#  become_user: splunk
-#  hosts: plaptascob1
-#         plaptascob2 
-#  tasks:
-#    - name: Stop Splunk
-#      shell: "/opt/splunk/bin/splunk stop"              
-#      register: status
-#    - debug:
-#       var: status.stdout_lines 
+- name: Stop Splunk
+  gather_facts: false
+  become: true
+  become_user: splunk
+  hosts: plissplnkmst1
+         plissplnkdeploy1
+         plissplnksearch1
+         plissplnkfwd1
+         plissplnkidx1
+         plissplnkidx2        
+  tasks:
+    - name: Stop Splunk
+      shell: "/opt/splunk/bin/splunk stop"              
+      register: status
+    - debug:
+       var: status.stdout_lines 
 
-#- name: Temporary pause to verify Splunk stopped successfully for first run 
-#  gather_facts: false
-#  hosts: dldsproto2
-#  tasks:
-#  - name: Pause for 5 minutes
-#    pause:
-#      minutes: 5
+- name: Temporary pause to verify Splunk stopped successfully for first run 
+  gather_facts: false
+  hosts: plissplnkmst1
+  tasks:
+  - name: Pause for 5 minutes
+    pause:
+      minutes: 5
 
-# Reboot
-#- name: Reboot Prod Servers
-#  gather_facts: true
-#  become: true
-#  become_user: root
-#  hosts: plzeisawcgr1
-          #plziisawcge1
-          #zpl6secnfs01
-          #zpl6sftp01
-          #pldsadmin1
-          #pldsmta1
-          #plissc1
-          #plissplnkmst1
-          #plissplnkdeploy1
-          #plissplnksearch1
-          #plissplnkfwd1
-          #plissplnkidx1
-          #plissplnkidx2
-          #plissyslogng
-          #plissyslogng1
-          #plissyslogng2   
-                          
-#  tasks:
-#  - name: Reboot Servers
-#    reboot: 
+ Reboot
+- name: Reboot Prod Servers exculding TAS
+  gather_facts: true
+  become: true
+  become_user: root
+  hosts: plzeisawcgr1
+         plziisawcge1
+         zpl6secnfs01
+         zpl6sftp01
+         pldsadmin1
+         pldsmta1
+         plissc1
+         plissplnkmst1
+         plissplnkdeploy1
+         plissplnksearch1
+         plissplnkfwd1
+         plissplnkidx1
+         plissplnkidx2
+         plissyslogng
+         plissyslogng1
+         plissyslogng2                      
+  tasks:
+  - name: Reboot Servers
+    reboot: 
  
