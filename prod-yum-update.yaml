@@ -110,3 +110,30 @@
   - name: Reboot Servers
     reboot: 
  
+# Verfiy all servers on online    
+- name: Ping Check
+  gather_facts: false
+  hosts: plzeisawcgr1
+         plziisawcge1
+         zpl6secnfs01
+         zpl6sftp01
+         pldsadmin1
+         pldsmta1
+         plissc1
+         plissplnkmst1
+         plissplnkdeploy1
+         plissplnksearch1
+         plissplnkfwd1
+         plissplnkidx1
+         plissplnkidx2
+         plissyslogng
+         plissyslogng1
+         plissyslogng2   
+  tasks:
+  - name: Pause for 2 minutes
+    pause:
+      minutes: 2
+  - name: Ping to verify connectivity
+    ansible.builtin.ping:
+
+# All complete EOF
