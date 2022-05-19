@@ -140,7 +140,7 @@
          plissplnkidx1
          plissplnkidx2        
   tasks:
-    - name: Stop Splunk
+    - name: Status Splunk
       shell: "/opt/splunk/bin/splunk status"              
       register: status
     - debug:
