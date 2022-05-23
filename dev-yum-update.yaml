@@ -25,6 +25,7 @@
          #tlaporalb1
          #dlaporalb2
          #tlaporalb2
+         #dlissplunk1
         
   tasks:
     - name: Upgrade all packages
