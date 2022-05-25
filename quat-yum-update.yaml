@@ -139,7 +139,7 @@
     - debug:  
         var: lbswitch.stdout_lines
         
-# Stop Primary Oracle Database        
+# Stop Secondary Oracle Database        
 - name: Stop Secondary Oracle DB
   gather_facts: false
   become: true
