@@ -1,3 +1,4 @@
+---
 # Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for DEV Oracle DB's
 
 # Waring Pause in case of FUBAR   
