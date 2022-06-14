@@ -1,4 +1,16 @@
 ---
+# Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for DEV excluding the Oracle DB's
+
+# Waring Pause in case of FUBAR   
+- name: WARNING this playbook will update and reboot all DEV Oracle DB Servers. Cancel immediately if ran in error!
+  gather_facts: false
+  hosts: tql6sftp01
+  tasks:
+  - name: Pause for 2 minutes
+    pause:
+      minutes: 2
+
+
 - name: Dev Yum updates 
   gather_facts: false
   become: true
@@ -32,3 +44,14 @@
       yum:
         name: '*'
         state: latest      
+
+- name: Reboot of Dev Servers
+  gather_facts: true
+  become: true
+  become_user: root
+  hosts: dldsadmin1
+         dldsadmin2
+ 
+  tasks:
+  - name: Reboot Dev
+    reboot:
