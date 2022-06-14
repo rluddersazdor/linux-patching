@@ -150,14 +150,14 @@
         name: '*'
         state: latest      
 
-# Reboot Secondary Oracle Database
-- name: Reboot Secondary Oracle Database
+# Reboot Primary Oracle Database
+- name: Reboot Primary Oracle Database
   gather_facts: true
   become: true
   become_user: root
   hosts: dldboran1          
   tasks:
-  - name: Reboot Secondary Oracle Database
+  - name: Reboot Primary Oracle Database
     reboot: 
     
 # Pause to let InfoSec tools load    
@@ -171,7 +171,7 @@
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
-# Start Secondary Oracle Database        
+# Start Primary Oracle Database        
 - name: Start Secondary Oracle DB
   gather_facts: false
   become: true
@@ -184,8 +184,8 @@
     - debug:
        var: dbstatus.stdout
       
-# Switch Seconday DB Traffic to Secondary
-- name: Swich Secondary LB to Secondary
+# Switch Primary DB Traffic to Primary
+- name: Swich Primary LB to Primary
   gather_facts: false
   become: yes
   hosts: dlaporalb1   
@@ -195,3 +195,5 @@
       register: lbswitch
     - debug:  
         var: lbswitch.stdout_lines
+
+# EOF Complete
