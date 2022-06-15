@@ -93,9 +93,9 @@
   gather_facts: false
   hosts: qldboran2
   tasks:
-  - name: Pause for 5 minutes
+  - name: Pause for 2 minutes
     pause:
-      minutes: 5
+      minutes: 2
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
@@ -139,8 +139,8 @@
     - debug:  
         var: lbswitch.stdout_lines
         
-# Stop Secondary Oracle Database        
-- name: Stop Secondary Oracle DB
+# Stop Primary Oracle Database        
+- name: Stop Primary Oracle DB
   gather_facts: false
   become: true
   become_user: oracle
@@ -176,13 +176,13 @@
   gather_facts: false
   hosts: qldboran1
   tasks:
-  - name: Pause for 5 minutes
+  - name: Pause for 2 minutes
     pause:
-      minutes: 5
+      minutes: 2
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
-# Start Secondary Oracle Database        
+# Start Primary Oracle Database        
 - name: Start Primary Oracle DB
   gather_facts: false
   become: true
@@ -208,17 +208,17 @@
         var: lbswitch.stdout_lines
         
 # Start the Tasmstr Deamons        
-- name: Start the Tasmstr Deamons
-  gather_facts: false
-  become: true
-  become_user: tasmstr
-  hosts: qlaptascob1
-         qlaptascob2 
-  tasks:
-    - name: Start Tasmstr Deamon
-      shell: /tas/opt/scripts/startdemon              
-      register: status
-    - debug:
-       var: status.stdout_lines 
+#- name: Start the Tasmstr Deamons
+#  gather_facts: false
+#  become: true
+#  become_user: tasmstr
+#  hosts: qlaptascob1
+#         qlaptascob2 
+#  tasks:
+#    - name: Start Tasmstr Deamon
+#      shell: /tas/opt/scripts/startdemon              
+#      register: status
+#    - debug:
+#       var: status.stdout_lines 
 
 # All Complete EOF
