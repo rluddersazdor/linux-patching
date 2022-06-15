@@ -18,21 +18,21 @@
   hosts: pdl6sftp01
          dldsadmin1
          dldsadmin2
-         #dldsansible2
-         #dldsdev1
-         #dldsdev2
-         #dldsproto1
-         #dldsproto2
-         #dldsproto3
-         #dlapwls1
-         #dlaptascob1    
-         #dlaptascob2
-         #tlapwls1
-         #dlaporalb1
-         #tlaporalb1
-         #dlaporalb2
-         #tlaporalb2
-         #dlissplunk1
+         dldsansible2
+         dldsdev1
+         dldsdev2
+         dldsproto1
+         dldsproto2
+         dldsproto3
+         dlapwls1
+         dlaptascob1    
+         dlaptascob2
+         tlapwls1
+         dlaporalb1
+         tlaporalb1
+         dlaporalb2
+         tlaporalb2
+         dlissplunk1
         
   tasks:
     - name: Upgrade all packages
@@ -45,25 +45,27 @@
   gather_facts: true
   become: true
   become_user: root
-  hosts: #pdl6sftp01
+  hosts: pdl6sftp01
          dldsadmin1
          dldsadmin2
-         #dldsansible2
-         #dldsdev1
-         #dldsdev2
-         #dldsproto1
-         #dldsproto2
-         #dldsproto3
-         #dlapwls1
-         #dlaptascob1    
-         #dlaptascob2
-         #tlapwls1
+         dldsansible2
+         dldsdev1
+         dldsdev2
+         dldsproto1
+         dldsproto2
+         dldsproto3
+         dlapwls1
+         dlaptascob1    
+         dlaptascob2
+         tlapwls1
          #dlaporalb1
          #tlaporalb1
          #dlaporalb2
          #tlaporalb2
-         #dlissplunk1
+         dlissplunk1
          
   tasks:
   - name: Reboot Dev
     reboot:
+
+# EOF Complete
