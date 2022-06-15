@@ -106,7 +106,7 @@
 # Starting Primary DB
 
 # Stop Primary Oracle Database        
-- name: Stop Secondary Oracle DB
+- name: Stop Primary Oracle DB
   gather_facts: false
   become: true
   become_user: oracle
@@ -118,8 +118,8 @@
     - debug:
        var: dbstatus.stdout_lines 
  
-# Switch Seconday DB Traffic to Primary
-- name: Swich Secondary LB to Primary
+# Switch Primary DB Traffic to Secondary
+- name: Swich Primary LB to Secondary
   gather_facts: false
   become: yes
   hosts: tlaporalb1  
@@ -173,7 +173,7 @@
     ansible.builtin.ping:
   
 # Start Primary Oracle Database        
-- name: Start Secondary Oracle DB
+- name: Start Primary Oracle DB
   gather_facts: false
   become: true
   become_user: oracle
