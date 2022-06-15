@@ -9,13 +9,13 @@
   - name: Pause for 2 minutes
     pause:
       minutes: 2
-
+      
+# Appy Updates
 - name: Dev Yum updates 
   gather_facts: false
   become: true
-  become_user: root
-    
-  hosts: #pdl6sftp01
+  become_user: root  
+  hosts: pdl6sftp01
          dldsadmin1
          dldsadmin2
          #dldsansible2
@@ -25,13 +25,9 @@
          #dldsproto2
          #dldsproto3
          #dlapwls1
-         #dldboran1
-         #dldboran2
          #dlaptascob1    
          #dlaptascob2
          #tlapwls1
-         #tldboran1
-         #tldboran2
          #dlaporalb1
          #tlaporalb1
          #dlaporalb2
@@ -44,13 +40,30 @@
         name: '*'
         state: latest      
 
+# Reboots
 - name: Reboot of Dev Servers
   gather_facts: true
   become: true
   become_user: root
-  hosts: dldsadmin1
+  hosts: #pdl6sftp01
+         dldsadmin1
          dldsadmin2
- 
+         #dldsansible2
+         #dldsdev1
+         #dldsdev2
+         #dldsproto1
+         #dldsproto2
+         #dldsproto3
+         #dlapwls1
+         #dlaptascob1    
+         #dlaptascob2
+         #tlapwls1
+         #dlaporalb1
+         #tlaporalb1
+         #dlaporalb2
+         #tlaporalb2
+         #dlissplunk1
+         
   tasks:
   - name: Reboot Dev
     reboot:
