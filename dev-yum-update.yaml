@@ -16,6 +16,7 @@
   become: true
   become_user: root  
   hosts: pdl6sftp01
+         dlissplunk1
          dldsadmin1
          dldsadmin2
          dldsansible2
@@ -32,7 +33,7 @@
          tlaporalb1
          dlaporalb2
          tlaporalb2
-         dlissplunk1
+         
         
   tasks:
     - name: Upgrade all packages
@@ -46,6 +47,7 @@
   become: true
   become_user: root
   hosts: pdl6sftp01
+         dlissplunk1
          dldsadmin1
          dldsadmin2
          dldsansible2
@@ -62,8 +64,7 @@
          #tlaporalb1
          #dlaporalb2
          #tlaporalb2
-         dlissplunk1
-         
+                  
   tasks:
   - name: Reboot Dev
     reboot:
