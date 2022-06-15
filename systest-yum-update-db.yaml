@@ -1,8 +1,8 @@
 ---
-# Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for DEV Oracle DB's
+# Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for SysTest Oracle DB's
 
 # Waring Pause in case of FUBAR   
-- name: WARNING this playbook will update and reboot all DEV Oracle DB Servers. Cancel immediately if ran in error!
+- name: WARNING this playbook will update and reboot all SysTest Oracle DB Servers. Cancel immediately if ran in error!
   gather_facts: false
   hosts: tldboran2
   tasks:
