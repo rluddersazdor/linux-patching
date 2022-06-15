@@ -2,7 +2,7 @@
 # Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for DEV excluding the Oracle DB's
 
 # Waring Pause in case of FUBAR   
-- name: WARNING this playbook will update and reboot all DEV Oracle DB Servers. Cancel immediately if ran in error!
+- name: WARNING this playbook will update and reboot all DEV Servers (Excluding DBs). Cancel immediately if ran in error!
   gather_facts: false
   hosts: dldsadmin1
   tasks:
