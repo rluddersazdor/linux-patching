@@ -15,7 +15,7 @@
 - name: Demand Daemon Status
   gather_facts: false
   hosts: qlaptascob1
-         qlaptascob1
+         qlaptascob2
   tasks:
     - name: Demand Daemon Status
       shell: /tas/opt/scripts/chkdaemon              
@@ -27,7 +27,7 @@
 #- name: Demand Daemon Status
 #  gather_facts: false
 #  hosts: qlaptascob1
-#         qlaptascob1
+#         qlaptascob2
 #  tasks:
 #    - name: Demand Daemon Status
 #      shell: /tas/opt/scripts/startdemon               
@@ -39,7 +39,7 @@
 #- name: Demand Daemon Status
 #  gather_facts: false
 #  hosts: qlaptascob1
-#         qlaptascob1
+#         qlaptascob2
 #  tasks:
 #    - name: Demand Daemon Status
 #      shell: /tas/opt/scripts/chkdaemon              
