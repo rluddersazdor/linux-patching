@@ -1,1 +1,14 @@
+---
+# Whoami       
+- name: Who Am I
+  gather_facts: false
+  hosts: qlaptascob1
+  tasks:
+    - name: whoami
+      command: whoami                             
+      register: dbstatus
+      #become: true
+      #become_user: oracle
 
+    - debug:
+       var: dbstatus.stdout_lines
