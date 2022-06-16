@@ -10,7 +10,7 @@
     pause:
       minutes: 2
 
-- name: Yum Apply Updates 
+- name: Yum Apply Updates Non DB 
   gather_facts: false
   become: true
   become_user: root    
@@ -18,8 +18,6 @@
          qlapwls1
          qlapwls2
          qlapwls3
-         qldboran1
-         qldboran2
          qlaptascob1    
          qlaptascob2      
                          
@@ -44,18 +42,6 @@
   - name: Reboot Non DB Servers
     reboot: 
 
-# Switch Seconday DB Traffic to Primary
-- name: Swich Secondary LB to Primary
-  gather_facts: false
-  become: yes
-  hosts: qlaporalb2  
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
-        
 # Stop Secondary Oracle Database        
 - name: Stop Secondary Oracle DB
   gather_facts: false
@@ -68,6 +54,18 @@
       register: dbstatus
     - debug:
        var: dbstatus.stdout_lines 
+ 
+# Switch Seconday DB Traffic to Primary
+- name: Swich Secondary LB to Primary
+  gather_facts: false
+  become: yes
+  hosts: qlaporalb2  
+  tasks:
+    - name: Switch Load Balancer
+      shell: /usr/local/bin/lbswitch
+      register: lbswitch
+    - debug:  
+        var: lbswitch.stdout_lines
 
 # Temporary pause to verify DB stop   
 - name: Double Check DB
@@ -76,8 +74,20 @@
   tasks:
   - name: Pause for 2 minutes
     pause:
-      minutes: 2
-   
+      minutes: 2	   
+
+#  Yum Apply Updates 
+- name: Yum Apply Updates 
+  gather_facts: false
+  become: true
+  become_user: root    
+  hosts: qldboran2
+  tasks:
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest      
+ 
 # Reboot Secondary Oracle Database
 - name: Reboot Secondary Oracle Database
   gather_facts: true
@@ -126,6 +136,19 @@
   
 # Secondary DB complete
 # Starting Primary DB
+
+# Stop Primary Oracle Database        
+- name: Stop Primay Oracle DB
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: qldboran1
+  tasks:
+    - name: Stopping DB
+      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines 
  
 # Switch Primary DB Traffic to Secondary
 - name: Swich Primary LB to Secondary
@@ -138,19 +161,6 @@
       register: lbswitch
     - debug:  
         var: lbswitch.stdout_lines
-        
-# Stop Primary Oracle Database        
-- name: Stop Primary Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: qldboran1
-  tasks:
-    - name: Stopping DB
-      shell: /home/oracle/scripts/dbs_shutdown.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout_lines 
 
 # Temporary pause to verify DB stop   
 - name: Double Check DB
@@ -159,8 +169,20 @@
   tasks:
   - name: Pause for 2 minutes
     pause:
-      minutes: 2
- 
+      minutes: 2	   
+
+#  Yum Apply Updates 
+- name: Yum Apply Updates 
+  gather_facts: false
+  become: true
+  become_user: root    
+  hosts: qldboran1
+  tasks:
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest      
+
 # Reboot Primary Oracle Database
 - name: Reboot Primary Oracle Database
   gather_facts: true
@@ -183,7 +205,7 @@
     ansible.builtin.ping:
   
 # Start Primary Oracle Database        
-- name: Start Primary Oracle DB
+- name: Start Secondary Oracle DB
   gather_facts: false
   become: true
   become_user: oracle
@@ -193,32 +215,18 @@
       shell: /home/oracle/scripts/dbs_startup.ksh              
       register: dbstatus
     - debug:
-       var: dbstatus.stdout 
+       var: dbstatus.stdout
       
 # Switch Primary DB Traffic to Primary
 - name: Swich Primary LB to Primary
   gather_facts: false
   become: yes
-  hosts: qlaporalb1  
+  hosts: qlaporalb1   
   tasks:
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
       register: lbswitch
     - debug:  
         var: lbswitch.stdout_lines
-        
-# Start the Tasmstr Deamons        
-#- name: Start the Tasmstr Deamons
-#  gather_facts: false
-#  become: true
-#  become_user: tasmstr
-#  hosts: qlaptascob1
-#         qlaptascob2 
-#  tasks:
-#    - name: Start Tasmstr Deamon
-#      shell: /tas/opt/scripts/startdemon              
-#      register: status
-#    - debug:
-#       var: status.stdout_lines 
 
-# All Complete EOF
+# EOF Complete
