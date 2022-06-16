@@ -7,9 +7,9 @@
   tasks:
     - name: whoami
       command: whoami                             
-      register: dbstatus
+      register: whoamistatus
     - debug:
-       var: dbstatus.stdout_lines
+       var: whoamistatus.stdout_lines
 
 # Demand Daemon Status       
 - name: Demand Daemon Status
