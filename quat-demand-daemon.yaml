@@ -1,6 +1,6 @@
 ---
 # Whoami       
-- name: Who Am I
+- name: Whoami
   gather_facts: false
   hosts: qlaptascob1
          qlaptascob2
