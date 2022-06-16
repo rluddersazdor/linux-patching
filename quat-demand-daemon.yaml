@@ -11,6 +11,18 @@
     - debug:
        var: whoamistatus.stdout_lines
 
+# Demand Daemon Start       
+- name: Demand Daemon Status
+  gather_facts: false
+  hosts: qlaptascob1
+         qlaptascob2
+  tasks:
+    - name: Demand Daemon Status
+      shell: /tas/opt/scripts/startdemon               
+      register: daemonstatus
+    - debug:
+       var: daemonstatus.stdout_lines 
+
 # Demand Daemon Status       
 - name: Demand Daemon Status
   gather_facts: false
@@ -22,27 +34,5 @@
       register: daemonstatus
     - debug:
        var: daemonstatus.stdout_lines 
-
-# Demand Daemon Start       
-#- name: Demand Daemon Status
-#  gather_facts: false
-#  hosts: qlaptascob1
-#         qlaptascob2
-#  tasks:
-#    - name: Demand Daemon Status
-#      shell: /tas/opt/scripts/startdemon               
-#      register: daemonstatus
-#    - debug:
-#       var: daemonstatus.stdout_lines 
-
-# Demand Daemon Status       
-#- name: Demand Daemon Status
-#  gather_facts: false
-#  hosts: qlaptascob1
-#         qlaptascob2
-#  tasks:
-#    - name: Demand Daemon Status
-#      shell: /tas/opt/scripts/chkdaemon              
-#      register: daemonstatus
-#    - debug:
-#       var: daemonstatus.stdout_lines 
+       
+ #EOF Complete      
