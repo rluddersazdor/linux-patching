@@ -78,20 +78,20 @@
     ansible.builtin.ping:
 
 # Start the Tasmstr Deamons        
-- name: Start the Tasmstr Deamons
-  gather_facts: false
-  become: true
-  become_method: sudo
-  become_user: tasmstr
-  become_flags: 'sudo su - tasmstr'
-  hosts: plaptascob1
-         plaptascob2 
-  tasks:
-    - name: Start Tasmstr Deamon
-      shell: /tas/opt/scripts/startdemon              
-      register: status
-    - debug:
-       var: status.stdout_lines 
+#- name: Start the Tasmstr Deamons
+#  gather_facts: false
+#  become: true
+#  become_method: sudo
+#  become_user: tasmstr
+#  become_flags: 'sudo su - tasmstr'
+#  hosts: plaptascob1
+#         plaptascob2 
+#  tasks:
+#    - name: Start Tasmstr Deamon
+#      shell: /tas/opt/scripts/startdemon              
+#      register: status
+#    - debug:
+#       var: status.stdout_lines 
 
 #############################################
 
