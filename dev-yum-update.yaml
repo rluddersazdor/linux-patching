@@ -60,10 +60,10 @@
          dlaptascob1    
          dlaptascob2
          tlapwls1
-         #dlaporalb1
-         #tlaporalb1
-         #dlaporalb2
-         #tlaporalb2
+         dlaporalb1
+         tlaporalb1
+         dlaporalb2
+         tlaporalb2
                   
   tasks:
   - name: Reboot Dev
