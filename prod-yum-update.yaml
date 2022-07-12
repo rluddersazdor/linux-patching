@@ -26,7 +26,9 @@
          pldboran2
          plaptrngcob1
          plaptrngwls1
-         pldbtrngoran1                                   
+         pldbtrngoran1
+         plaporalb1
+         plaporalb2
   tasks:
     - name: Upgrade all packages
       yum:
@@ -97,7 +99,9 @@
          plissplnkidx2
          plissyslogng
          plissyslogng1
-         plissyslogng2                      
+         plissyslogng2
+         plaporalb1
+         plaporalb2
   tasks:
   - name: Reboot Servers
     reboot: 
