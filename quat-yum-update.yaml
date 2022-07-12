@@ -19,7 +19,9 @@
          qlapwls2
          qlapwls3
          qlaptascob1    
-         qlaptascob2      
+         qlaptascob2
+         qlaporalb1
+         qlaporalb2
                          
   tasks:
     - name: Upgrade all packages
@@ -37,7 +39,9 @@
          qlapwls2
          qlapwls3
          qlaptascob1    
-         qlaptascob2          
+         qlaptascob2
+         qlaporalb1
+         qlaporalb2
   tasks:
   - name: Reboot Non DB Servers
     reboot: 
