@@ -33,8 +33,7 @@
          tlaporalb1
          dlaporalb2
          tlaporalb2
-         
-        
+                 
   tasks:
     - name: Upgrade all packages
       yum:
@@ -54,8 +53,8 @@
     - debug:
        var: status.stdout_lines 
 
-# Reboots
-- name: Reboot of Dev Servers
+# Reboots excluding DBs
+- name: Reboot of Dev Servers Non DB
   gather_facts: true
   become: true
   become_user: root
@@ -107,16 +106,7 @@
       register: lbswitch
     - debug:  
         var: lbswitch.stdout_lines
-
-# Temporary pause to verify DB stop   
-- name: Double Check DB
-  gather_facts: false
-  hosts: dldboran2
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2	   
-
+  
 #  Yum Apply Updates 
 - name: Yum Apply Updates 
   gather_facts: false
@@ -203,15 +193,6 @@
     - debug:  
         var: lbswitch.stdout_lines
 
-# Temporary pause to verify DB stop   
-- name: Double Check DB
-  gather_facts: false
-  hosts: dldboran1
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2	   
-
 #  Yum Apply Updates 
 - name: Yum Apply Updates 
   gather_facts: false
@@ -296,16 +277,7 @@
       register: lbswitch
     - debug:  
         var: lbswitch.stdout_lines
-
-# Temporary pause to verify DB stop   
-- name: Double Check DB
-  gather_facts: false
-  hosts: tldboran2
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2	   
-
+ 
 #  Yum Apply Updates 
 - name: Yum Apply Updates 
   gather_facts: false
@@ -392,15 +364,6 @@
     - debug:  
         var: lbswitch.stdout_lines
 
-# Temporary pause to verify DB stop   
-- name: Double Check DB
-  gather_facts: false
-  hosts: tldboran1
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2	   
-
 #  Yum Apply Updates 
 - name: Yum Apply Updates 
   gather_facts: false
@@ -459,5 +422,4 @@
     - debug:  
         var: lbswitch.stdout_lines
 # SYSTEST Oracle DB Complete
-
 # EOF Complete
