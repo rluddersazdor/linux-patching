@@ -274,6 +274,6 @@
 #      shell: /usr/local/bin/lbswitch
 #      register: lbswitch
 #   - debug:  
-        var: lbswitch.stdout_lines
+#        var: lbswitch.stdout_lines
 
 # EOF Complete
