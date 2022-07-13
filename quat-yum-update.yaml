@@ -214,5 +214,34 @@
       register: lbswitch
     - debug:  
         var: lbswitch.stdout_lines
+# DBs Complete
+
+# Start Demand Deamons
+- name: Demand Daemon Start
+  gather_facts: false
+  become: true
+  become_user: tasmstr
+  hosts: qlaptascob1
+         qlaptascob2
+  tasks:
+    - name: Demand Daemon Start
+      shell: /tas/opt/scripts/startdemon               
+      register: daemonstatus
+    - debug:
+       var: daemonstatus.stdout_lines 
+
+# Demand Daemon Status       
+- name: Demand Daemon Status
+  gather_facts: false
+  become: true
+  become_user: tasmstr
+  hosts: qlaptascob1
+         qlaptascob2
+  tasks:
+    - name: Demand Daemon Status
+      shell: /tas/opt/scripts/chkdaemon              
+      register: daemonstatus
+    - debug:
+       var: daemonstatus.stdout_lines 
 
 # EOF Complete
