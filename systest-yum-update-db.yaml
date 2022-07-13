@@ -35,15 +35,6 @@
     - debug:  
         var: lbswitch.stdout_lines
 
-# Temporary pause to verify DB stop   
-- name: Double Check DB
-  gather_facts: false
-  hosts: tldboran2
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2	   
-
 #  Yum Apply Updates 
 - name: Yum Apply Updates 
   gather_facts: false
@@ -128,16 +119,7 @@
       shell: /usr/local/bin/lbswitch
       register: lbswitch
     - debug:  
-        var: lbswitch.stdout_lines
-
-# Temporary pause to verify DB stop   
-- name: Double Check DB
-  gather_facts: false
-  hosts: tldboran1
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2	   
+        var: lbswitch.stdout_lines  
 
 #  Yum Apply Updates 
 - name: Yum Apply Updates 
