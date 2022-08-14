@@ -337,7 +337,7 @@
     - name: Switch Load Balancer
       shell: /usr/local/bin/lbswitch
       register: lbswitch
-   - debug:  
+    - debug:  
         var: lbswitch.stdout_lines
 
 # EOF Complete
