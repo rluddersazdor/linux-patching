@@ -69,7 +69,80 @@
 #############################################
 
 
+## OEM and Training Servers       
+- name: Stop OEM App
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: plaporaoem1
+  tasks:
+    - name: Stopping App
+      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines 
 
+- name: Stop OEM DB
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: pldboraoem1
+  tasks:
+    - name: Stopping DB
+      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines 
+ 
+- name: Stop Training DB
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: pldbtrngoran1
+  tasks:
+    - name: Stopping DB
+      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines  
+ 
+  
+## Reboot OEM and Training Servers
+#- name: OEM and Training Servers
+#  gather_facts: true
+#  become: true
+#  become_user: root
+#  hosts: pldboran2          
+#  tasks:
+#  - name: Reboot
+#    reboot: 
+    
+## Pause to let InfoSec tools load    
+#- name: Pasue After Reboot
+#  gather_facts: false
+#  hosts: pldboran2
+#  tasks:
+#  - name: Pause for 2 minutes
+#    pause:
+#      minutes: 2
+#  - name: Ping to verify connectivity
+#    ansible.builtin.ping:
+  
+# Start Secondary Oracle Database        
+#- name: Start Secondary Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: pldboran2
+#  tasks:
+#    - name: Starting DB
+#      shell: /home/oracle/scripts/dbs_startup.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout
+      
+  
+# Secondary DB completetop
 
 
 
