@@ -57,6 +57,8 @@
          plissyslogng2
          plzeisawcgr1
          plziisawcge1
+         plissyslogngext
+         plissyslogngint
   tasks:
     - name: Upgrade all packages
       yum:
@@ -106,6 +108,8 @@
          plaporalb2
          plzeisawcgr1
          plziisawcge1
+         plissyslogngext
+         plissyslogngint
   tasks:
   - name: Reboot Servers
     reboot: 
@@ -131,6 +135,8 @@
          plissyslogng2
          plzeisawcgr1
          plziisawcge1
+         plissyslogngext
+         plissyslogngint
   tasks:
   - name: Pause for 1 minutes
     pause:
