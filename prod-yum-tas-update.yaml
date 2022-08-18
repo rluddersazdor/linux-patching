@@ -6,9 +6,9 @@
   gather_facts: false
   hosts: plaporaoem1
   tasks:
-  - name: Pause for 2 minutes
+  - name: Pause for 1 minutes
     pause:
-      minutes: 2
+      minutes: 1
 
 - name: Yum Apply Updates 
   gather_facts: false
@@ -126,9 +126,9 @@
          pldboraoem1
          pldbtrngoran1
   tasks:
-  - name: Pause for 2 minutes
+  - name: Pause for 1 minutes
     pause:
-      minutes: 2
+      minutes: 1
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
@@ -223,9 +223,9 @@
   gather_facts: false
   hosts: pldboran2
   tasks:
-  - name: Pause for 2 minutes
+  - name: Pause for 1 minutes
     pause:
-      minutes: 2
+      minutes: 1
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
@@ -309,9 +309,9 @@
   gather_facts: false
   hosts: pldboran1
   tasks:
-  - name: Pause for 2 minutes
+  - name: Pause for 1 minutes
     pause:
-      minutes: 2
+      minutes: 1
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
