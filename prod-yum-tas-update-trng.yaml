@@ -39,7 +39,7 @@
  
   
 ## Reboot Training Servers
-- name: OEM and Training Servers
+- name: Reboot Training Servers
   gather_facts: true
   become: true
   become_user: root
