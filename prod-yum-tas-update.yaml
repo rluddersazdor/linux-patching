@@ -127,8 +127,8 @@
          pldbtrngoran1
   tasks:
 - name: Pause for 2 minutes
-   pause:
-      minutes: 2
+  pause:
+   minutes: 2
   - name: Ping to verify connectivity
     ansible.builtin.ping:
   
