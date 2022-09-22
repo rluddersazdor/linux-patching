@@ -41,4 +41,20 @@
   - name: Reboot WebLogic and Cobol Servers
     reboot: 
 
+# Verfiy all servers on online    
+- name: Ping Check
+  gather_facts: false
+  hosts: plapwls1
+         plapwls2
+         plapwls3
+         plaptascob1
+         plaptascob2
+         
+  tasks:
+  - name: Pause for 1 minutes
+    pause:
+      minutes: 1
+  - name: Ping to verify connectivity
+    ansible.builtin.ping:
+
 # EOF
