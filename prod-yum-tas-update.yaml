@@ -119,18 +119,20 @@
   - name: Reboot
     reboot: 
     
-## Pause to let InfoSec tools load    
+    
+## Pause to let InfoSec tools load  
 - name: Pasue After Reboot
   gather_facts: false
   hosts: plaporaoem1
          pldboraoem1
          pldbtrngoran1
   tasks:
-- name: Pause for 2 minutes
-  pause:
-   minutes: 2
+  - name: Pause for 2 minutes
+    pause:
+      minutes: 2
   - name: Ping to verify connectivity
     ansible.builtin.ping:
+    
   
 ## Start OEM and Training Servers       
 - name: Start OEM DB
