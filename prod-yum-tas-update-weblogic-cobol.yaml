@@ -1,5 +1,5 @@
 ---
-# Playbook to apply the latest RHEL updates, for TAS Prod
+# Playbook to apply the latest RHEL updates, for TAS Prod WebLic and Cobol
 
 # Waring Pause in case of FUBAR   
 - name: WARNING this playbook will update and reboot the WebLogic and Cobol PROD TAS Servers. Cancel immediately if ran in error!
@@ -38,7 +38,7 @@
          plaptascob2
                                    
   tasks:
-  - name: Reboot Non DataGuard Servers
+  - name: Reboot WebLogic and Cobol Servers
     reboot: 
 
-############################################
+# EOF
