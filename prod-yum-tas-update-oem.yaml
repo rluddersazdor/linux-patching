@@ -24,7 +24,7 @@
         state: latest      
 
 
-## Stop OEM and Training Servers       
+## Stop OEM Servers       
 - name: Stop OEM App
   gather_facts: false
   become: true
@@ -50,7 +50,7 @@
        var: dbstatus.stdout_lines 
 
 
-## Reboot OEM and Training Servers
+## Reboot OEM Servers
 - name: OEM and Training Servers
   gather_facts: true
   become: true
@@ -74,29 +74,29 @@
     ansible.builtin.ping:
  
 ## Start OEM and Training Servers       
-- name: Start OEM DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: pldboraoem1
-  tasks:
-    - name: Start DB
-      shell: /home/oracle/scripts/dbs_startup.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout_lines 
-
-- name: Start OEM App
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: plaporaoem1
-  tasks:
-    - name: Starting App
-      shell: /home/oracle/scripts/dbs_startup.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout_lines 
+#- name: Start OEM DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: pldboraoem1
+#  tasks:
+#    - name: Start DB
+#      shell: /home/oracle/scripts/dbs_startup.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout_lines 
+#
+#- name: Start OEM App
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: plaporaoem1
+#  tasks:
+#    - name: Starting App
+#      shell: /home/oracle/scripts/dbs_startup.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout_lines 
         
 # OEM and Training Servers Complete
 # EOF
