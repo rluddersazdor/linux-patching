@@ -74,29 +74,29 @@
     ansible.builtin.ping:
  
 ## Start OEM and Training Servers       
-#- name: Start OEM DB
-#  gather_facts: false
-#  become: true
-#  become_user: oracle
-#  hosts: pldboraoem1
-#  tasks:
-#    - name: Start DB
-#      shell: /home/oracle/scripts/dbs_startup.ksh              
-#      register: dbstatus
-#    - debug:
-#       var: dbstatus.stdout_lines 
-#
-#- name: Start OEM App
-#  gather_facts: false
-#  become: true
-#  become_user: oracle
-#  hosts: plaporaoem1
-#  tasks:
-#    - name: Starting App
-#      shell: /home/oracle/scripts/dbs_startup.ksh              
-#      register: dbstatus
-#    - debug:
-#       var: dbstatus.stdout_lines 
+- name: Start OEM DB
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: pldboraoem1
+  tasks:
+    - name: Start DB
+      shell: /home/oracle/scripts/dbs_startup.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines 
+
+- name: Start OEM App
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: plaporaoem1
+  tasks:
+    - name: Starting App
+      shell: /home/oracle/scripts/dbs_startup.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines 
         
 # OEM and Training Servers Complete
 # EOF
