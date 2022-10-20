@@ -65,18 +65,18 @@
     ansible.builtin.ping:
     
   
-### Start Training Server Database       
-#- name: Start Training DB
-#  gather_facts: false
-#  become: true
-#  become_user: oracle
-#  hosts: pldbtrngoran1
-#  tasks:
-#    - name: Starting DB
-#      shell: /home/oracle/scripts/dbs_startup.ksh              
-#      register: dbstatus
-#    - debug:
-#       var: dbstatus.stdout_lines  
+## Start Training Server Database       
+- name: Start Training DB
+  gather_facts: false
+  become: true
+  become_user: oracle
+  hosts: pldbtrngoran1
+  tasks:
+    - name: Starting DB
+      shell: /home/oracle/scripts/dbs_startup.ksh              
+      register: dbstatus
+    - debug:
+       var: dbstatus.stdout_lines  
           
 # Training Servers Complete
 # EOF Complete
