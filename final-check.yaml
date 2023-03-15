@@ -1,6 +1,27 @@
 ---
 - name: Validate all updates have been applied to DEV and SYSTEST
   hosts: dldsadmin1
+         dldsadmin1
+         dldsadmin2
+         dlissplunk1
+         dldsansible2
+         dldsdev1
+         dldsdev2
+         dldsproto1
+         dldsproto2
+         dldsproto3
+         dlapwls1
+         dlaptascob1    
+         dlaptascob2
+         tlapwls1
+         dlaporalb1
+         tlaporalb1
+         dlaporalb2
+         tlaporalb2
+         dldboran1
+         dldboran2
+         tldboran1
+         tldboran2
  
   tasks:
   - name: Final Check
