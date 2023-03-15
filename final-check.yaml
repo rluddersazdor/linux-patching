@@ -1,9 +1,9 @@
 ---
-- name: Pre Check to check Communication and Access
+- name: Validate all updates have been applied to DEV and SYSTEST
   hosts: dldsadmin1
  
   tasks:
-  - name: Pre Check
+  - name: Final Check
     shell: echo "Updates Successfully Applied."
     #shell: "yum check-update"
     #register: yumstatus
