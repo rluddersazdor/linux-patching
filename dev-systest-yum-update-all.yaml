@@ -55,7 +55,7 @@
 
 # Reboots excluding DBs
 - name: Reboot of Dev Servers Non DB
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: pdl6sftp01
@@ -121,7 +121,7 @@
  
 # Reboot Secondary Oracle Database
 - name: Reboot Secondary DEV Oracle Database
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: dldboran2          
@@ -207,7 +207,7 @@
 
 # Reboot Primary Oracle Database
 - name: Reboot Primary DEV Oracle Database
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: dldboran1          
@@ -292,7 +292,7 @@
  
 # Reboot Secondary SYSTEST Oracle Database
 - name: Reboot Secondary Oracle Database
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: tldboran2          
@@ -378,7 +378,7 @@
 
 # Reboot Primary SYSTEST Oracle Database
 - name: Reboot Primary SYSTEST Oracle Database
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: tldboran1          
