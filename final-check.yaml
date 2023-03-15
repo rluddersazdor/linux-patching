@@ -4,7 +4,7 @@
  
   tasks:
   - name: Pre Check
-    shell: echo "Hi! Tower is working."
+    shell: echo "Updates Successfully Applied."
     #shell: "yum check-update"
     #register: yumstatus
   #- debug:
