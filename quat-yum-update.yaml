@@ -31,7 +31,7 @@
 
 # Reboot
 - name: Reboot Non DB Servers
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: tql6sftp01
@@ -85,7 +85,7 @@
  
 # Reboot Secondary Oracle Database
 - name: Reboot Secondary Oracle Database
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: qldboran2          
@@ -171,7 +171,7 @@
 
 # Reboot Primary Oracle Database
 - name: Reboot Primary Oracle Database
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: qldboran1          
@@ -217,31 +217,31 @@
 # DBs Complete
 
 # Start Demand Deamons
-- name: Demand Daemon Start
-  gather_facts: false
-  become: true
-  become_user: tasmstr
-  hosts: qlaptascob1
-         qlaptascob2
-  tasks:
-    - name: Demand Daemon Start
-      shell: /tas/opt/scripts/startdemon               
-      register: daemonstatus
-    - debug:
-       var: daemonstatus.stdout_lines 
+#- name: Demand Daemon Start
+#  gather_facts: false
+#  become: true
+#  become_user: tasmstr
+#  hosts: qlaptascob1
+#         qlaptascob2
+#  tasks:
+#    - name: Demand Daemon Start
+#      shell: /tas/opt/scripts/startdemon               
+#      register: daemonstatus
+#    - debug:
+#       var: daemonstatus.stdout_lines 
 
 # Demand Daemon Status       
-- name: Demand Daemon Status
-  gather_facts: false
-  become: true
-  become_user: tasmstr
-  hosts: qlaptascob1
-         qlaptascob2
-  tasks:
-    - name: Demand Daemon Status
-      shell: /tas/opt/scripts/chkdaemon              
-      register: daemonstatus
-    - debug:
-       var: daemonstatus.stdout_lines 
+#- name: Demand Daemon Status
+#  gather_facts: false
+#  become: true
+#  become_user: tasmstr
+#  hosts: qlaptascob1
+#         qlaptascob2
+#  tasks:
+#    - name: Demand Daemon Status
+#      shell: /tas/opt/scripts/chkdaemon              
+#      register: daemonstatus
+#    - debug:
+#       var: daemonstatus.stdout_lines 
 
 # EOF Complete
