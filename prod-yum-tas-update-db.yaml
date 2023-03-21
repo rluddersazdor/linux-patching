@@ -49,7 +49,7 @@
  
 ## Reboot Secondary Oracle Database
 - name: Reboot Secondary Oracle Database
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: pldboran2          
@@ -135,7 +135,7 @@
 
 ## Reboot Primary Oracle Database
 - name: Reboot Primary Oracle Database
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: pldboran1          
