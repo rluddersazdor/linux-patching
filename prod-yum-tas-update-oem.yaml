@@ -52,7 +52,7 @@
 
 ## Reboot OEM Servers
 - name: OEM and Training Servers
-  gather_facts: true
+  gather_facts: false
   become: true
   become_user: root
   hosts: plaporaoem1
