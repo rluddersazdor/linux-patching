@@ -2,7 +2,7 @@
 # Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for DEV and SYSTEST
 
 # Waring Pause in case of FUBAR   
-- name: WARNING this playbook will update and reboot all DEV Servers, Systest Servers (including DBs). Cancel immediately if ran in error!
+- name: WARNING this playbook will update and reboot all DEV Servers, Systest Servers (excluding DBs). Cancel immediately if ran in error!
   gather_facts: false
   hosts: dldsadmin1
   tasks:
@@ -79,347 +79,351 @@
                   
   tasks:
   - name: Reboot Dev
-    reboot:
+reboot:
 
-# DEV Oracle DB Servers
+# EOF Complete
+
+# DEV and SYSTEST Databases moved to separate playbooks and ran simultaneously to increase speed.
+
+## DEV Oracle DB Servers
 # Stop Secondary DEV Oracle Database        
-- name: Stop Secondary DEV Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: dldboran2
-  tasks:
-    - name: Stopping DB
-      shell: /home/oracle/scripts/dbs_shutdown.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout_lines 
+#- name: Stop Secondary DEV Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: dldboran2
+#  tasks:
+#    - name: Stopping DB
+#      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout_lines 
  
-# Switch Seconday DB Traffic to Primary
-- name: Swich Secondary LB to Primary
-  gather_facts: false
-  become: yes
-  hosts: dlaporalb2  
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
+## Switch Seconday DB Traffic to Primary
+#- name: Swich Secondary LB to Primary
+#  gather_facts: false
+#  become: yes
+#  hosts: dlaporalb2  
+#  tasks:
+#    - name: Switch Load Balancer
+#      shell: /usr/local/bin/lbswitch
+#      register: lbswitch
+#    - debug:  
+#        var: lbswitch.stdout_lines
   
-#  Yum Apply Updates 
-- name: Yum Apply Updates 
-  gather_facts: false
-  become: true
-  become_user: root    
-  hosts: dldboran2
-  tasks:
-    - name: Upgrade all packages
-      yum:
-        name: '*'
-        state: latest      
+##  Yum Apply Updates 
+#- name: Yum Apply Updates 
+#  gather_facts: false
+#  become: true
+#  become_user: root    
+#  hosts: dldboran2
+#  tasks:
+#    - name: Upgrade all packages
+#      yum:
+#        name: '*'
+#        state: latest      
  
-# Reboot Secondary Oracle Database
-- name: Reboot Secondary DEV Oracle Database
-  gather_facts: false
-  become: true
-  become_user: root
-  hosts: dldboran2          
-  tasks:
-  - name: Reboot Secondary DEV Oracle Database
-    reboot: 
+## Reboot Secondary Oracle Database
+#- name: Reboot Secondary DEV Oracle Database
+#  gather_facts: false
+#  become: true
+#  become_user: root
+#  hosts: dldboran2          
+#  tasks:
+#  - name: Reboot Secondary DEV Oracle Database
+#    reboot: 
     
-# Pause to let InfoSec tools load    
-- name: Pasue After Reboot
-  gather_facts: false
-  hosts: dldboran2
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2
-  - name: Ping to verify connectivity
-    ansible.builtin.ping:
+## Pause to let InfoSec tools load    
+#- name: Pasue After Reboot
+#  gather_facts: false
+#  hosts: dldboran2
+#  tasks:
+#  - name: Pause for 2 minutes
+#    pause:
+#      minutes: 2
+#  - name: Ping to verify connectivity
+#    ansible.builtin.ping:
   
-# Start Secondary Oracle Database        
-- name: Start Secondary DEV Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: dldboran2
-  tasks:
-    - name: Starting DB
-      shell: /home/oracle/scripts/dbs_startup.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout
+## Start Secondary Oracle Database        
+#- name: Start Secondary DEV Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: dldboran2
+#  tasks:
+#    - name: Starting DB
+#      shell: /home/oracle/scripts/dbs_startup.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout
       
-# Switch Seconday DB Traffic to Secondary
-- name: Swich Secondary LB to Secondary
-  gather_facts: false
-  become: yes
-  hosts: dlaporalb2   
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
+## Switch Seconday DB Traffic to Secondary
+#- name: Swich Secondary LB to Secondary
+#  gather_facts: false
+#  become: yes
+#  hosts: dlaporalb2   
+#  tasks:
+#    - name: Switch Load Balancer
+#      shell: /usr/local/bin/lbswitch
+#      register: lbswitch
+#    - debug:  
+#        var: lbswitch.stdout_lines
   
-# Secondary DB complete
-# Starting Primary DB
+## Secondary DB complete
+## Starting Primary DB
 
-# Stop Primary Oracle Database        
-- name: Stop Primay DEV Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: dldboran1
-  tasks:
-    - name: Stopping DB
-      shell: /home/oracle/scripts/dbs_shutdown.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout_lines 
+## Stop Primary Oracle Database        
+#- name: Stop Primay DEV Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: dldboran1
+#  tasks:
+#    - name: Stopping DB
+#      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout_lines 
  
-# Switch Primary DB Traffic to Secondary
-- name: Swich Primary LB to Secondary
-  gather_facts: false
-  become: yes
-  hosts: dlaporalb1  
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
+## Switch Primary DB Traffic to Secondary
+#- name: Swich Primary LB to Secondary
+#  gather_facts: false
+#  become: yes
+#  hosts: dlaporalb1  
+#  tasks:
+#    - name: Switch Load Balancer
+#      shell: /usr/local/bin/lbswitch
+#      register: lbswitch
+#    - debug:  
+#        var: lbswitch.stdout_lines
 
-#  Yum Apply Updates 
-- name: Yum Apply Updates 
-  gather_facts: false
-  become: true
-  become_user: root    
-  hosts: dldboran1
-  tasks:
-    - name: Upgrade all packages
-      yum:
-        name: '*'
-        state: latest      
+##  Yum Apply Updates 
+#- name: Yum Apply Updates 
+#  gather_facts: false
+#  become: true
+#  become_user: root    
+#  hosts: dldboran1
+#  tasks:
+#    - name: Upgrade all packages
+#      yum:
+#        name: '*'
+#        state: latest      
 
-# Reboot Primary Oracle Database
-- name: Reboot Primary DEV Oracle Database
-  gather_facts: false
-  become: true
-  become_user: root
-  hosts: dldboran1          
-  tasks:
-  - name: Reboot Primary Oracle Database
-    reboot: 
+## Reboot Primary Oracle Database
+#- name: Reboot Primary DEV Oracle Database
+#  gather_facts: false
+#  become: true
+#  become_user: root
+#  hosts: dldboran1          
+#  tasks:
+#  - name: Reboot Primary Oracle Database
+#    reboot: 
     
-# Pause to let InfoSec tools load    
-- name: Pasue After Reboot
-  gather_facts: false
-  hosts: dldboran1
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2
-  - name: Ping to verify connectivity
-    ansible.builtin.ping:
+## Pause to let InfoSec tools load    
+#- name: Pasue After Reboot
+#  gather_facts: false
+#  hosts: dldboran1
+#  tasks:
+#  - name: Pause for 2 minutes
+#    pause:
+#      minutes: 2
+#  - name: Ping to verify connectivity
+#    ansible.builtin.ping:
   
-# Start Primary Oracle Database        
-- name: Start Secondary DEV Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: dldboran1
-  tasks:
-    - name: Starting DB
-      shell: /home/oracle/scripts/dbs_startup.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout
+## Start Primary Oracle Database        
+#- name: Start Secondary DEV Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: dldboran1
+#  tasks:
+#    - name: Starting DB
+#      shell: /home/oracle/scripts/dbs_startup.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout
       
-# Switch Primary DB Traffic to Primary
-- name: Swich Primary LB to Primary
-  gather_facts: false
-  become: yes
-  hosts: dlaporalb1   
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
-# DEV Oracle DB Complete
+## Switch Primary DB Traffic to Primary
+#- name: Swich Primary LB to Primary
+#  gather_facts: false
+#  become: yes
+#  hosts: dlaporalb1   
+#  tasks:
+#    - name: Switch Load Balancer
+#      shell: /usr/local/bin/lbswitch
+#      register: lbswitch
+#    - debug:  
+#        var: lbswitch.stdout_lines
+## DEV Oracle DB Complete
 
-# SYSTEST Oracle DB
-# Stop Secondary SYSTEST Oracle Database        
-- name: Stop Secondary SYSTEST Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: tldboran2
-  tasks:
-    - name: Stopping DB
-      shell: /home/oracle/scripts/dbs_shutdown.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout_lines 
+## SYSTEST Oracle DB
+## Stop Secondary SYSTEST Oracle Database        
+#- name: Stop Secondary SYSTEST Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: tldboran2
+#  tasks:
+#    - name: Stopping DB
+#      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout_lines 
  
-# Switch Seconday DB Traffic to Primary
-- name: Swich Secondary LB to Primary
-  gather_facts: false
-  become: yes
-  hosts: tlaporalb2  
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
+## Switch Seconday DB Traffic to Primary
+#- name: Swich Secondary LB to Primary
+#  gather_facts: false
+#  become: yes
+#  hosts: tlaporalb2  
+#  tasks:
+#    - name: Switch Load Balancer
+#      shell: /usr/local/bin/lbswitch
+#      register: lbswitch
+#    - debug:  
+#        var: lbswitch.stdout_lines
  
-#  Yum Apply Updates 
-- name: Yum Apply Updates 
-  gather_facts: false
-  become: true
-  become_user: root    
-  hosts: tldboran2
-  tasks:
-    - name: Upgrade all packages
-      yum:
-        name: '*'
-        state: latest      
+##  Yum Apply Updates 
+#- name: Yum Apply Updates 
+#  gather_facts: false
+#  become: true
+#  become_user: root    
+#  hosts: tldboran2
+#  tasks:
+#    - name: Upgrade all packages
+#      yum:
+#        name: '*'
+#        state: latest      
  
-# Reboot Secondary SYSTEST Oracle Database
-- name: Reboot Secondary Oracle Database
-  gather_facts: false
-  become: true
-  become_user: root
-  hosts: tldboran2          
-  tasks:
-  - name: Reboot Secondary SYSTEST Oracle Database
-    reboot: 
+## Reboot Secondary SYSTEST Oracle Database
+#- name: Reboot Secondary Oracle Database
+#  gather_facts: false
+#  become: true
+#  become_user: root
+#  hosts: tldboran2          
+#  tasks:
+#  - name: Reboot Secondary SYSTEST Oracle Database
+#    reboot: 
     
-# Pause to let InfoSec tools load    
-- name: Pasue After Reboot
-  gather_facts: false
-  hosts: tldboran2
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2
-  - name: Ping to verify connectivity
-    ansible.builtin.ping:
+## Pause to let InfoSec tools load    
+#- name: Pasue After Reboot
+#  gather_facts: false
+#  hosts: tldboran2
+#  tasks:
+#  - name: Pause for 2 minutes
+#    pause:
+#      minutes: 2
+#  - name: Ping to verify connectivity
+#    ansible.builtin.ping:
   
-# Start Secondary SYSTEST Oracle Database        
-- name: Start Secondary Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: tldboran2
-  tasks:
-    - name: Starting DB
-      shell: /home/oracle/scripts/dbs_startup.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout
+## Start Secondary SYSTEST Oracle Database        
+#- name: Start Secondary Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: tldboran2
+#  tasks:
+#    - name: Starting DB
+#      shell: /home/oracle/scripts/dbs_startup.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout
       
-# Switch Seconday DB Traffic to Secondary
-- name: Swich Secondary LB to Secondary
-  gather_facts: false
-  become: yes
-  hosts: tlaporalb2   
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
+## Switch Seconday DB Traffic to Secondary
+#- name: Swich Secondary LB to Secondary
+#  gather_facts: false
+#  become: yes
+#  hosts: tlaporalb2   
+#  tasks:
+#    - name: Switch Load Balancer
+#      shell: /usr/local/bin/lbswitch
+#      register: lbswitch
+#    - debug:  
+#        var: lbswitch.stdout_lines
   
-# Secondary SYSTEST DB complete
-# Starting SYSTEST Primary DB
+## Secondary SYSTEST DB complete
+## Starting SYSTEST Primary DB
 
-# Stop Primary SYSTEST Oracle Database        
-- name: Stop Primary SYSTEST Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: tldboran1
-  tasks:
-    - name: Stopping DB
-      shell: /home/oracle/scripts/dbs_shutdown.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout_lines 
+## Stop Primary SYSTEST Oracle Database        
+#- name: Stop Primary SYSTEST Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: tldboran1
+#  tasks:
+#    - name: Stopping DB
+#      shell: /home/oracle/scripts/dbs_shutdown.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout_lines 
  
-# Switch Primary DB Traffic to Secondary
-- name: Swich Primary LB to Secondary
-  gather_facts: false
-  become: yes
-  hosts: tlaporalb1  
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
+## Switch Primary DB Traffic to Secondary
+#- name: Swich Primary LB to Secondary
+#  gather_facts: false
+#  become: yes
+#  hosts: tlaporalb1  
+#  tasks:
+#    - name: Switch Load Balancer
+#      shell: /usr/local/bin/lbswitch
+#      register: lbswitch
+#    - debug:  
+#        var: lbswitch.stdout_lines
 
-#  Yum Apply Updates 
-- name: Yum Apply Updates 
-  gather_facts: false
-  become: true
-  become_user: root    
-  hosts: tldboran1
-  tasks:
-    - name: Upgrade all packages
-      yum:
-        name: '*'
-        state: latest      
+##  Yum Apply Updates 
+#- name: Yum Apply Updates 
+#  gather_facts: false
+#  become: true
+#  become_user: root    
+#  hosts: tldboran1
+#  tasks:
+#    - name: Upgrade all packages
+#      yum:
+#        name: '*'
+#        state: latest      
 
-# Reboot Primary SYSTEST Oracle Database
-- name: Reboot Primary SYSTEST Oracle Database
-  gather_facts: false
-  become: true
-  become_user: root
-  hosts: tldboran1          
-  tasks:
-  - name: Reboot Primary Oracle Database
-    reboot: 
+## Reboot Primary SYSTEST Oracle Database
+#- name: Reboot Primary SYSTEST Oracle Database
+#  gather_facts: false
+#  become: true
+#  become_user: root
+#  hosts: tldboran1          
+#  tasks:
+#  - name: Reboot Primary Oracle Database
+#    reboot: 
     
-# Pause to let InfoSec tools load    
-- name: Pasue After Reboot
-  gather_facts: false
-  hosts: tldboran1
-  tasks:
-  - name: Pause for 2 minutes
-    pause:
-      minutes: 2
-  - name: Ping to verify connectivity
-    ansible.builtin.ping:
+## Pause to let InfoSec tools load    
+#- name: Pasue After Reboot
+#  gather_facts: false
+#  hosts: tldboran1
+#  tasks:
+#  - name: Pause for 2 minutes
+#    pause:
+#      minutes: 2
+#  - name: Ping to verify connectivity
+#    ansible.builtin.ping:
   
-# Start Primary SYSTEST Oracle Database        
-- name: Start Primary Oracle DB
-  gather_facts: false
-  become: true
-  become_user: oracle
-  hosts: tldboran1
-  tasks:
-    - name: Starting DB
-      shell: /home/oracle/scripts/dbs_startup.ksh              
-      register: dbstatus
-    - debug:
-       var: dbstatus.stdout
+## Start Primary SYSTEST Oracle Database        
+#- name: Start Primary Oracle DB
+#  gather_facts: false
+#  become: true
+#  become_user: oracle
+#  hosts: tldboran1
+#  tasks:
+#    - name: Starting DB
+#      shell: /home/oracle/scripts/dbs_startup.ksh              
+#      register: dbstatus
+#    - debug:
+#       var: dbstatus.stdout
       
-# Switch Primary DB Traffic to Primary
-- name: Swich Primary LB to Primary
-  gather_facts: false
-  become: yes
-  hosts: tlaporalb1   
-  tasks:
-    - name: Switch Load Balancer
-      shell: /usr/local/bin/lbswitch
-      register: lbswitch
-    - debug:  
-        var: lbswitch.stdout_lines
+## Switch Primary DB Traffic to Primary
+#- name: Swich Primary LB to Primary
+#  gather_facts: false
+#  become: yes
+#  hosts: tlaporalb1   
+#  tasks:
+#    - name: Switch Load Balancer
+#      shell: /usr/local/bin/lbswitch
+#      register: lbswitch
+#    - debug:  
+#        var: lbswitch.stdout_lines
 # SYSTEST Oracle DB Complete
 # EOF Complete
