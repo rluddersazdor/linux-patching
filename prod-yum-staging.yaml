@@ -1,0 +1,64 @@
+---
+# Playbook to apply the latest RHEL updates and reboots in PROD
+# TAS Prod servers will be updated but not rebooted
+
+# Waring Pause in case of FUBAR   
+- name: WARNING this playbook will update all PROD Servers. Cancel immediately if ran in error!
+  gather_facts: false
+  hosts: pldsadmin1
+  tasks:
+  - name: Pause for 2 minutes
+    pause:
+      minutes: 2
+ 
+- name: Yum Apply Updates TAS
+  gather_facts: false
+  become: true
+  become_user: root    
+  hosts: plaporaoem1
+         pldboraoem1
+         plapwls1
+         plapwls2
+         plapwls3
+         plaptascob1
+         plaptascob2
+         pldboran1
+         pldboran2
+         plaptrngcob1
+         plaptrngwls1
+         pldbtrngoran1
+         plaporalb1
+         plaporalb2
+  tasks:
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest      
+      
+- name: Yum Apply Updates Non TAS 
+  gather_facts: false
+  become: true
+  become_user: root    
+  hosts: plzeisawcgr1
+         plziisawcge1
+         zpl6secnfs01
+         zpl6sftp01
+         pldsadmin1
+         pldsmta1
+         plissc1
+         plissplnkmst1
+         plissplnkdeploy1
+         plissplnksearch1
+         plissplnkfwd1
+         plissplnkidx1
+         plissplnkidx2
+         plissyslogng
+         plissyslogng1
+         plissyslogng2
+         plissyslogngext
+         plissyslogngint
+  tasks:
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest     
