@@ -2,7 +2,7 @@
 # Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for DEV and SYSTEST
 
 # Waring Pause in case of FUBAR   
-- name: WARNING this playbook will update and reboot all DEV Servers, Systest Servers (excluding DBs). Cancel immediately if ran in error!
+- name: WARNING this playbook will update and reboot all DEV Servers, Systest Servers (excluding DBs and LBs). Cancel immediately if ran in error!
   gather_facts: false
   hosts: dldsadmin1
   tasks:
@@ -26,14 +26,10 @@
          dldsproto2
          dldsproto3
          dlapwls1
+         tlapwls1
          dlaptascob1    
          dlaptascob2
-         tlapwls1
-         dlaporalb1
-         tlaporalb1
-         dlaporalb2
-         tlaporalb2
-                 
+                                   
   tasks:
     - name: Upgrade all packages
       yum:
@@ -69,14 +65,10 @@
          dldsproto2
          dldsproto3
          dlapwls1
+         tlapwls1
          dlaptascob1    
          dlaptascob2
-         tlapwls1
-         dlaporalb1
-         tlaporalb1
-         dlaporalb2
-         tlaporalb2
-                  
+                                    
   tasks:
   - name: Reboot Dev
     reboot:
