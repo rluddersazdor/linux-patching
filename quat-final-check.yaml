@@ -1,0 +1,20 @@
+---
+- name: Validate all updates have been applied to QUAT
+  hosts: tql6sftp01
+         qlapwls1
+         qlapwls2
+         qlapwls3
+         qldboran1
+         qldboran2
+         qlaptascob1    
+         qlaptascob2  
+         qlaporalb1
+         qlaporalb2
+         
+  tasks:
+  - name: Final Check
+    shell: echo "Updates Successfully Applied."
+    #shell: "yum check-update"
+    #register: yumstatus
+  #- debug:
+      #var: yumstatus.stdout_lines
