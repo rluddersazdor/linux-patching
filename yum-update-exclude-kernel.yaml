@@ -3,7 +3,7 @@
   gather_facts: false
   become: true
   become_user: root
-  hosts: plissyslogng1
+  hosts: all
   tasks:
     - name: Upgrade all packages, excluding kernel packages
       yum:
