@@ -5,7 +5,7 @@
   become_user: root
   hosts: all
   tasks:
-    - name: Upgrade all packages, excluding kernel packages
+    - name: Upgrade all packages, excluding kernel and systemd packages
       yum:
         name: '*'
         state: latest
