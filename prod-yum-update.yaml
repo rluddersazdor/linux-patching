@@ -57,6 +57,7 @@
          plissyslogng2
          plissyslogngext
          plissyslogngint
+         plntnetbx1
   tasks:
     - name: Upgrade all packages
       yum:
@@ -104,6 +105,7 @@
          plissyslogng2
          plissyslogngext
          plissyslogngint
+         plntnetbx1
   tasks:
   - name: Reboot Servers
     reboot: 
@@ -129,6 +131,7 @@
          plissyslogng2
          plissyslogngext
          plissyslogngint
+         plntnetbx1
   tasks:
   - name: Pause for 1 minutes
     pause:
