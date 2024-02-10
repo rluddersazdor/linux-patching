@@ -29,6 +29,8 @@
          tlapwls1
          dlaptascob1    
          dlaptascob2
+         dlapwl1
+         tlapwl1
                                    
   tasks:
     - name: Upgrade all packages
@@ -68,6 +70,8 @@
          tlapwls1
          dlaptascob1    
          dlaptascob2
+         dlapwl1
+         tlapwl1
                                     
   tasks:
   - name: Reboot Dev
