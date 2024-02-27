@@ -17,6 +17,9 @@
   hosts: plapwls1
          plapwls2
          plapwls3
+         plapwl1
+         plapwl2
+         plapwl3
          plaptascob1
          plaptascob2
                                             
