@@ -4,7 +4,7 @@
 # Waring Pause in case of FUBAR   
 - name: WARNING this playbook will update and reboot all QUAT Servers. Cancel immediately if ran in error!
   gather_facts: false
-  hosts: tql6sftp01
+  hosts: qlaporalb1
   tasks:
   - name: Pause for 2 minutes
     pause:
@@ -25,7 +25,7 @@
          qlaptascob2
          qlaporalb1
          qlaporalb2
-                         
+         #qlapsftp1                         
   tasks:
     - name: Upgrade all packages
       yum:
@@ -45,6 +45,7 @@
          qlaptascob2
          qlaporalb1
          qlaporalb2
+         #qlapsftp1
   tasks:
   - name: Reboot Non DB Servers
     reboot: 
