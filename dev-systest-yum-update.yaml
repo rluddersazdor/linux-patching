@@ -4,7 +4,7 @@
 # Waring Pause in case of FUBAR   
 - name: WARNING this playbook will update and reboot all DEV Servers, Systest Servers (excluding DBs and LBs). Cancel immediately if ran in error!
   gather_facts: false
-  hosts: dldsadmin1
+  hosts: dlaptascob1
   tasks:
   - name: Pause for 2 minutes
     pause:
@@ -31,7 +31,8 @@
          dlaptascob2
          dlapwl1
          tlapwl1
-                                   
+         #dlapsftp1
+                                  
   tasks:
     - name: Upgrade all packages
       yum:
@@ -72,6 +73,7 @@
          dlaptascob2
          dlapwl1
          tlapwl1
+         #dlapsftp1
                                     
   tasks:
   - name: Reboot Dev
