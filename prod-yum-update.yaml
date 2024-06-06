@@ -5,7 +5,7 @@
 # Waring Pause in case of FUBAR   
 - name: WARNING this playbook will update and reboot(exculding TAS) all PROD Servers. Cancel immediately if ran in error!
   gather_facts: false
-  hosts: pldsadmin1
+  hosts: pldsmgmt1
   tasks:
   - name: Pause for 2 minutes
     pause:
@@ -66,6 +66,7 @@
          plissecnfs1
          plzeairwcgr1
          plziairwcge1
+         #plapsftp1
   tasks:
     - name: Upgrade all packages
       yum:
@@ -118,7 +119,8 @@
          plisseccen1
          plissecnfs1
          plzeairwcgr1
-         plziairwcge1           
+         plziairwcge1 
+         #plapsftp1
   tasks:
   - name: Reboot Servers
     reboot: 
@@ -149,7 +151,8 @@
          plisseccen1
          plissecnfs1
          plzeairwcgr1
-         plziairwcge1 
+         plziairwcge1
+         #plapsftp1
   tasks:
   - name: Pause for 1 minutes
     pause:
