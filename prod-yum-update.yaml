@@ -61,6 +61,11 @@
          plissyslogngext
          plissyslogngint
          plntnetbx1
+         pldsmgmt1
+         plisseccen1
+         plissecnfs1
+         plzeairwcgr1
+         plziairwcge1
   tasks:
     - name: Upgrade all packages
       yum:
@@ -109,6 +114,11 @@
          plissyslogngext
          plissyslogngint
          plntnetbx1
+         pldsmgmt1
+         plisseccen1
+         plissecnfs1
+         plzeairwcgr1
+         plziairwcge1           
   tasks:
   - name: Reboot Servers
     reboot: 
@@ -135,6 +145,11 @@
          plissyslogngext
          plissyslogngint
          plntnetbx1
+         pldsmgmt1
+         plisseccen1
+         plissecnfs1
+         plzeairwcgr1
+         plziairwcge1 
   tasks:
   - name: Pause for 1 minutes
     pause:
