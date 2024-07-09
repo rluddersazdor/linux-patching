@@ -45,7 +45,6 @@
   hosts: plzeisawcgr1
          plziisawcge1
          zpl6secnfs01
-         zpl6sftp01
          pldsadmin1
          pldsmta1
          plissc1
@@ -99,7 +98,6 @@
   hosts: plzeisawcgr1
          plziisawcge1
          zpl6secnfs01
-         zpl6sftp01
          pldsadmin1
          pldsmta1
          plissc1
@@ -131,7 +129,6 @@
   hosts: plzeisawcgr1
          plziisawcge1
          zpl6secnfs01
-         zpl6sftp01
          pldsadmin1
          pldsmta1
          plissc1
