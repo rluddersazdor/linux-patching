@@ -39,6 +39,9 @@
   hosts: qlapwls1
          qlapwls2
          qlapwls3
+         qlapwl1
+         qlapwl2
+         qlapwl3
          qlaptascob1    
          qlaptascob2
          qlaporalb1
