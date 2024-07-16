@@ -24,7 +24,7 @@
          qlaptascob2
          qlaporalb1
          qlaporalb2
-         #qlapsftp1                         
+         qlapsftp1                         
   tasks:
     - name: Upgrade all packages
       yum:
@@ -46,7 +46,7 @@
          qlaptascob2
          qlaporalb1
          qlaporalb2
-         #qlapsftp1
+         qlapsftp1
   tasks:
   - name: Reboot Non DB Servers
     reboot: 
