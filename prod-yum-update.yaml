@@ -42,12 +42,8 @@
   gather_facts: false
   become: true
   become_user: root    
-  hosts: plzeisawcgr1
-         plziisawcge1
-         zpl6secnfs01
-         pldsadmin1
+  hosts: pldsmgmt1
          pldsmta1
-         plissc1
          plissplnkmst1
          plissplnkdeploy1
          plissplnksearch1
@@ -60,7 +56,7 @@
          plissyslogngext
          plissyslogngint
          plntnetbx1
-         pldsmgmt1
+         pldsadmin1
          plisseccen1
          plissecnfs1
          plzeairwcgr1
@@ -95,12 +91,8 @@
   gather_facts: false
   become: true
   become_user: root
-  hosts: plzeisawcgr1
-         plziisawcge1
-         zpl6secnfs01
-         pldsadmin1
+  hosts: pldsmgmt1
          pldsmta1
-         plissc1
          plissplnkmst1
          plissplnkdeploy1
          plissplnksearch1
@@ -113,7 +105,7 @@
          plissyslogngext
          plissyslogngint
          plntnetbx1
-         pldsmgmt1
+         pldsadmin1
          plisseccen1
          plissecnfs1
          plzeairwcgr1
@@ -126,12 +118,8 @@
 # Verfiy all servers on online    
 - name: Ping Check
   gather_facts: false
-  hosts: plzeisawcgr1
-         plziisawcge1
-         zpl6secnfs01
-         pldsadmin1
+  hosts: pldsmgmt1
          pldsmta1
-         plissc1
          plissplnkmst1
          plissplnkdeploy1
          plissplnksearch1
@@ -144,7 +132,7 @@
          plissyslogngext
          plissyslogngint
          plntnetbx1
-         pldsmgmt1
+         pldsadmin1
          plisseccen1
          plissecnfs1
          plzeairwcgr1
