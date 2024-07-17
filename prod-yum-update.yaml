@@ -61,7 +61,7 @@
          plissecnfs1
          plzeairwcgr1
          plziairwcge1
-         #plapsftp1
+         plapsftp1
   tasks:
     - name: Upgrade all packages
       yum:
@@ -110,7 +110,7 @@
          plissecnfs1
          plzeairwcgr1
          plziairwcge1 
-         #plapsftp1
+         plapsftp1
   tasks:
   - name: Reboot Servers
     reboot: 
@@ -137,7 +137,7 @@
          plissecnfs1
          plzeairwcgr1
          plziairwcge1
-         #plapsftp1
+         plapsftp1
   tasks:
   - name: Pause for 1 minutes
     pause:
