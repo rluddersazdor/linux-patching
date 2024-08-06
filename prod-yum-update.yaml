@@ -43,13 +43,9 @@
   become: true
   become_user: root    
   hosts: pldsmgmt1
-         pldsmta1
-         plissplnkmst1
+         pldsmta1         
          plissplnkdeploy1
-         plissplnksearch1
          plissplnkfwd1
-         plissplnkidx1
-         plissplnkidx2
          plissyslogng
          plissyslogng1
          plissyslogng2
@@ -73,12 +69,8 @@
   gather_facts: false
   become: true
   become_user: splunk
-  hosts: plissplnkmst1
-         plissplnkdeploy1
-         plissplnksearch1
-         plissplnkfwd1
-         plissplnkidx1
-         plissplnkidx2        
+  hosts: plissplnkfwd1
+         plissplnkdeploy1        
   tasks:
     - name: Stop Splunk
       shell: "/opt/splunk/bin/splunk stop"              
@@ -93,12 +85,8 @@
   become_user: root
   hosts: pldsmgmt1
          pldsmta1
-         plissplnkmst1
          plissplnkdeploy1
-         plissplnksearch1
          plissplnkfwd1
-         plissplnkidx1
-         plissplnkidx2
          plissyslogng
          plissyslogng1
          plissyslogng2
@@ -120,12 +108,8 @@
   gather_facts: false
   hosts: pldsmgmt1
          pldsmta1
-         plissplnkmst1
          plissplnkdeploy1
-         plissplnksearch1
          plissplnkfwd1
-         plissplnkidx1
-         plissplnkidx2
          plissyslogng
          plissyslogng1
          plissyslogng2
@@ -150,12 +134,8 @@
   gather_facts: false
   become: true
   become_user: splunk
-  hosts: plissplnkmst1
-         plissplnkdeploy1
-         plissplnksearch1
+  hosts: plissplnkfwd1
          plissplnkfwd1
-         plissplnkidx1
-         plissplnkidx2        
   tasks:
     - name: Status Splunk
       shell: "/opt/splunk/bin/splunk status"              
