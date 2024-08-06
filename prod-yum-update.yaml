@@ -3,7 +3,7 @@
 # TAS Prod servers will be updated but not rebooted
 
 # Waring Pause in case of FUBAR   
-- name: WARNING this playbook will update and reboot(exculding TAS) all PROD Servers. Cancel immediately if ran in error!
+- name: WARNING this playbook will update and reboot(excluding TAS) all PROD Servers. Cancel immediately if ran in error!
   gather_facts: false
   hosts: pldsmgmt1
   tasks:
@@ -79,7 +79,7 @@
        var: status.stdout_lines 
 
 # Reboot
-- name: Reboot Prod Servers exculding TAS
+- name: Reboot Prod Servers excluding TAS
   gather_facts: false
   become: true
   become_user: root
