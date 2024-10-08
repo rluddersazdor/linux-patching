@@ -129,7 +129,7 @@
   become: true
   become_user: splunk
   hosts: plissplnkfwd1
-         plissplnkfwd1
+         plissplnkdeploy1
   tasks:
     - name: Status Splunk
       shell: "/opt/splunk/bin/splunk status"              
