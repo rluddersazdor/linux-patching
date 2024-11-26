@@ -42,8 +42,7 @@
   gather_facts: false
   become: true
   become_user: root    
-  hosts: pldsmgmt1
-         pldsmta1         
+  hosts: pldsmgmt1              
          plissplnkdeploy1
          plissplnkfwd1
          plissyslogng
@@ -81,8 +80,7 @@
   gather_facts: false
   become: true
   become_user: root
-  hosts: pldsmgmt1
-         pldsmta1
+  hosts: pldsmgmt1         
          plissplnkdeploy1
          plissplnkfwd1
          plissyslogng
@@ -102,8 +100,7 @@
 # Verfiy all servers on online    
 - name: Ping Check
   gather_facts: false
-  hosts: pldsmgmt1
-         pldsmta1
+  hosts: pldsmgmt1         
          plissplnkdeploy1
          plissplnkfwd1
          plissyslogng
