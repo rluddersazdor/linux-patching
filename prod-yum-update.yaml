@@ -57,9 +57,7 @@
          plapsftp1
          plzeairw1
          plziairw1
-         plapcomvgw4
-         plapcomvgw5
-         plapcomvgw6
+         
   tasks:
     - name: Upgrade all packages
       yum:
@@ -100,9 +98,7 @@
          plapsftp1
          plzeairw1
          plziairw1
-         plapcomvgw4
-         plapcomvgw5
-         plapcomvgw6
+         
   tasks:
   - name: Reboot Servers
     reboot: 
@@ -125,9 +121,7 @@
          plapsftp1
          plzeairw1
          plziairw1
-         plapcomvgw4
-         plapcomvgw5
-         plapcomvgw6
+         
   tasks:
   - name: Pause for 1 minutes
     pause:
