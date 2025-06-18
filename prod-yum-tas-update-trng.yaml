@@ -46,6 +46,7 @@
   become_user: root
   hosts: plaptrngcob1
          plaptrngwls1
+         plaptrngwl1
          pldbtrngoran1         
   tasks:
   - name: Reboot
@@ -57,6 +58,7 @@
   gather_facts: false
   hosts: plaptrngcob1
          plaptrngwls1
+         plaptrngwl1
          pldbtrngoran1
   tasks:
   - name: Pause for 2 minutes
