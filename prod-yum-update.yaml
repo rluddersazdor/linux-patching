@@ -29,6 +29,7 @@
          pldboran2
          plaptrngcob1
          plaptrngwls1
+         plaptrngwl1
          pldbtrngoran1
          plaporalb1
          plaporalb2
@@ -55,8 +56,6 @@
          plisseccen1
          plissecnfs1
          plapsftp1
-         plzeairw1
-         plziairw1
          
   tasks:
     - name: Upgrade all packages
@@ -96,8 +95,6 @@
          plisseccen1
          plissecnfs1
          plapsftp1
-         plzeairw1
-         plziairw1
          
   tasks:
   - name: Reboot Servers
@@ -119,8 +116,6 @@
          plisseccen1
          plissecnfs1
          plapsftp1
-         plzeairw1
-         plziairw1
          
   tasks:
   - name: Pause for 1 minutes
