@@ -17,9 +17,6 @@
   become_user: root    
   hosts: plaporaoem1
          pldboraoem1
-         plapwls1
-         plapwls2
-         plapwls3
          plapwl1
          plapwl2
          plapwl3
