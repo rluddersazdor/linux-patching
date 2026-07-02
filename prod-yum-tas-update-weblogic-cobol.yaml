@@ -4,7 +4,7 @@
 # Waring Pause in case of FUBAR   
 - name: WARNING this playbook will update and reboot the WebLogic and Cobol PROD TAS Servers. Cancel immediately if ran in error!
   gather_facts: false
-  hosts: plapwls1
+  hosts: plapwl1
   tasks:
   - name: Pause for 2 minutes
     pause:
@@ -14,10 +14,7 @@
   gather_facts: false
   become: true
   become_user: root    
-  hosts: plapwls1
-         plapwls2
-         plapwls3
-         plapwl1
+  hosts: plapwl1
          plapwl2
          plapwl3
          plaptascob1
@@ -34,10 +31,7 @@
   gather_facts: false
   become: true
   become_user: root
-  hosts: plapwls1
-         plapwls2
-         plapwls3
-         plapwl1
+  hosts: plapwl1
          plapwl2
          plapwl3
          plaptascob1
@@ -50,10 +44,7 @@
 # Verfiy all servers on online    
 - name: Ping Check
   gather_facts: false
-  hosts: plapwls1
-         plapwls2
-         plapwls3
-         plapwl1
+  hosts: plapwl1
          plapwl2
          plapwl3
          plaptascob1
