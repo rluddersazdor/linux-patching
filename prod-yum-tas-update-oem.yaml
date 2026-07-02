@@ -4,7 +4,7 @@
 # Waring Pause in case of FUBAR   
 - name: WARNING this playbook will update and reboot all PROD TAS OEM Servers. Cancel immediately if ran in error!
   gather_facts: false
-  hosts: plaporaoem1
+  hosts: plapoemn1
   tasks:
   - name: Pause for 2 minutes
     pause:
@@ -16,6 +16,8 @@
   become_user: root    
   hosts: plaporaoem1
          pldboraoem1
+         plapoemn1
+         pldboemn1
                                             
   tasks:
     - name: Upgrade all packages
@@ -30,6 +32,7 @@
   become: true
   become_user: oracle
   hosts: plaporaoem1
+         plapoemn1
   tasks:
     - name: Stopping App
       shell: /home/oracle/scripts/dbs_shutdown.ksh              
@@ -42,6 +45,7 @@
   become: true
   become_user: oracle
   hosts: pldboraoem1
+         pldboemn1
   tasks:
     - name: Stopping DB
       shell: /home/oracle/scripts/dbs_shutdown.ksh              
@@ -56,7 +60,9 @@
   become: true
   become_user: root
   hosts: plaporaoem1
-         pldboraoem1                  
+         pldboraoem1
+         plapoemn1
+         pldboemn1
   tasks:
   - name: Reboot
     reboot: 
@@ -65,7 +71,9 @@
 - name: Pasue After Reboot
   gather_facts: false
   hosts: plaporaoem1
-         pldboraoem1         
+         pldboraoem1
+         plapoemn1
+         pldboemn1
   tasks:
   - name: Pause for 2 minutes
     pause:
@@ -79,6 +87,7 @@
   become: true
   become_user: oracle
   hosts: pldboraoem1
+         pldboemn1
   tasks:
     - name: Start DB
       shell: /home/oracle/scripts/dbs_startup.ksh              
@@ -91,6 +100,7 @@
   become: true
   become_user: oracle
   hosts: plaporaoem1
+         plapoemn1
   tasks:
     - name: Starting App
       shell: /home/oracle/scripts/dbs_startup.ksh              
