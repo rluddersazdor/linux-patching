@@ -1,9 +1,9 @@
 ---
 - name: Validate all updates have been applied to QUAT
   hosts: tql6sftp01
-         qlapwls1
-         qlapwls2
-         qlapwls3
+         qlapwl1
+         qlapwl2
+         qlapwl3
          qldboran1
          qldboran2
          qlaptascob1    
