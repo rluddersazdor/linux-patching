@@ -16,15 +16,15 @@
   become_user: root    
   hosts: plaporaoem1
          pldboraoem1
-         plapwls1
-         plapwls2
-         plapwls3
+         plapwl1
+         plapwl2
+         plapwl3
          plaptascob1
          plaptascob2
          pldboran1
          pldboran2
          plaptrngcob1
-         plaptrngwls1
+         plaptrngwl1
          pldbtrngoran1
                                    
   tasks:
@@ -38,13 +38,13 @@
   gather_facts: true
   become: true
   become_user: root
-  hosts: plapwls1
-         plapwls2
-         plapwls3
+  hosts: plapwl1
+         plapwl2
+         plapwl3
          plaptascob1
          plaptascob2
          plaptrngcob1
-         plaptrngwls1
+         plaptrngwl1
                           
   tasks:
   - name: Reboot Non DataGuard Servers
