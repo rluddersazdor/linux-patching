@@ -19,6 +19,7 @@
          plapwl3
          plaptascob1
          plaptascob2
+         plaptasnfs1
                                             
   tasks:
     - name: Upgrade all packages
@@ -36,6 +37,7 @@
          plapwl3
          plaptascob1
          plaptascob2
+         plaptasnfs1
                                    
   tasks:
   - name: Reboot WebLogic and Cobol Servers
@@ -49,6 +51,7 @@
          plapwl3
          plaptascob1
          plaptascob2
+         plaptasnfs1
          
   tasks:
   - name: Pause for 1 minutes
