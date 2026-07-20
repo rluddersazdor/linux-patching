@@ -30,6 +30,7 @@
          pldbtrngoran1
          plaporalb1
          plaporalb2
+         plaptasnfs1
   tasks:
     - name: Upgrade all packages
       yum:
