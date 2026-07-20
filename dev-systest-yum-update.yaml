@@ -29,6 +29,8 @@
          dlapwl1
          tlapwl1
          dlapsftp1
+         dlaptasnfs1
+         tlaptasnfs1
                                   
   tasks:
     - name: Upgrade all packages
@@ -68,6 +70,8 @@
          dlapwl1
          tlapwl1
          dlapsftp1
+         dlaptasnfs1
+         tlaptasnfs1
                                     
   tasks:
   - name: Reboot Dev
