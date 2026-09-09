@@ -37,17 +37,17 @@
         state: latest      
 
 # Stop DEV Splunk before rebooting        
-- name: Stop DEV Splunk
-  gather_facts: false
-  become: true
-  become_user: splunk
-  hosts: dlissplunk1           
-  tasks:
-    - name: Stop Splunk
-      shell: "/opt/splunk/bin/splunk stop"              
-      register: status
-    - debug:
-       var: status.stdout_lines 
+#- name: Stop DEV Splunk
+#  gather_facts: false
+#  become: true
+#  become_user: splunk
+#  hosts: dlissplunk1           
+#  tasks:
+#    - name: Stop Splunk
+#      shell: "/opt/splunk/bin/splunk stop"              
+#      register: status
+#    - debug:
+#       var: status.stdout_lines 
 
 # Reboots excluding DBs
 - name: Reboot of Dev Servers Non DB
