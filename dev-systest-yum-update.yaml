@@ -18,6 +18,7 @@
   hosts: dlissplunk1
          dldsadmin1
          dldsadmin2
+         dldsansible1
          dldsansible2
          dldsdev1
          dldsdev2
@@ -26,10 +27,16 @@
          dldsproto3
          dlaptascob1    
          dlaptascob2
-         dlapwl1
          dlapsftp1
+         dlapwl1
+         tlapwl1
          dlaptasnfs1
-                                           
+         tlaptasnfs1
+         tlaporalb1
+         tlaporalb2
+         tlaporalb1
+         tlaporalb2
+                                                           
   tasks:
     - name: Upgrade all packages
       yum:
@@ -57,6 +64,7 @@
   hosts: dlissplunk1
          dldsadmin1
          dldsadmin2
+         dldsansible1
          dldsansible2
          dldsdev1
          dldsdev2
@@ -65,11 +73,16 @@
          dldsproto3
          dlaptascob1    
          dlaptascob2
-         dlapwl1
          dlapsftp1
+         dlapwl1
+         tlapwl1
          dlaptasnfs1
-         
-                                    
+         tlaptasnfs1
+         tlaporalb1
+         tlaporalb2
+         tlaporalb1
+         tlaporalb2
+                                        
   tasks:
   - name: Reboot Dev
     reboot:
