@@ -1,5 +1,5 @@
 ---
-# Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for DEV and SYSTEST
+# Playbook to apply the latest RHEL updates for DEV and SYSTEST
 
 # Waring Pause in case of FUBAR   
 - name: WARNING this playbook will update and reboot all DEV Servers, Systest Servers 
@@ -32,8 +32,8 @@
          tlapwl1
          dlaptasnfs1
          tlaptasnfs1
-         tlaporalb1
-         tlaporalb2
+         dlaporalb1
+         dlaporalb2
          tlaporalb1
          tlaporalb2
                                                            
@@ -57,7 +57,7 @@
        var: status.stdout_lines 
 
 # Reboots excluding DBs
-- name: Reboot of Dev Servers Non DB
+- name: Reboot of Dev Servers
   gather_facts: false
   become: true
   become_user: root
