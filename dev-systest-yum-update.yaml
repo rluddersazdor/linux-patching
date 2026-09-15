@@ -2,7 +2,7 @@
 # Playbook to apply the latest RHEL updates, switch Load Balancers and Reboots for DEV and SYSTEST
 
 # Waring Pause in case of FUBAR   
-- name: WARNING this playbook will update and reboot all DEV Servers, Systest Servers (excluding DBs and LBs). Cancel immediately if ran in error!
+- name: WARNING this playbook will update and reboot all DEV Servers, Systest Servers 
   gather_facts: false
   hosts: dlaptascob1
   tasks:
@@ -36,18 +36,18 @@
         name: '*'
         state: latest      
 
-# Stop DEV Splunk before rebooting        
-#- name: Stop DEV Splunk
-#  gather_facts: false
-#  become: true
-#  become_user: splunk
-#  hosts: dlissplunk1           
-#  tasks:
-#    - name: Stop Splunk
-#      shell: "/opt/splunk/bin/splunk stop"              
-#      register: status
-#    - debug:
-#       var: status.stdout_lines 
+ Stop DEV Splunk before rebooting        
+- name: Stop DEV Splunk
+  gather_facts: false
+  become: true
+  become_user: splunk
+  hosts: dlissplunk1           
+  tasks:
+    - name: Stop Splunk
+      shell: "/opt/splunk/bin/splunk stop"              
+      register: status
+    - debug:
+       var: status.stdout_lines 
 
 # Reboots excluding DBs
 - name: Reboot of Dev Servers Non DB
